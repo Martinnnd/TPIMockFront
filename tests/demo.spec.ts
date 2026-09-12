@@ -1,0 +1,188 @@
+import { test, expect } from '@playwright/test';
+
+test('mapa a pantalla completa, filtros, historias y creación persistente', async ({ page }) => {
+  const errors: string[] = [];
+  page.on('pageerror', e => errors.push(e.message));
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/');
+  const map = await page.locator('.memory-map').boundingBox();
+  expect(map!.y).toBe(0);
+  expect(map!.height).toBe(1000);
+  expect(map!.width).toBe(1368);
+  await expect(page.locator('.stories-drawer')).toHaveCount(0);
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(7);
+  await expect(page.locator('.leaflet-tile-loaded').first()).toBeVisible({ timeout: 20000 });
+  await expect(page.getByRole('link', { name: 'OpenStreetMap', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'La ronda de mate del Parque Centenario, 1997, Personales' }).click();
+  await expect(page.getByRole('heading', { name: 'La ronda de mate del Parque Centenario' })).toBeVisible();
+  await expect(page.locator('.memory-story')).toContainText('avenida Díaz Vélez');
+  await expect(page.getByText('Autor ficticio · dato de demostración')).toBeVisible();
+  await page.getByRole('button', { name: 'Cerrar historias' }).click();
+  await expect(page.getByRole('button', { name: 'Historias', exact: true })).toBeFocused();
+  await page.getByRole('button', { name: 'Década de 1980' }).click();
+  await expect(page.locator('.app')).toHaveClass(/era-1980/);
+  await page.getByRole('group', { name: 'Filtrar por categoría' }).getByRole('button', { name: 'Música', exact: true }).click();
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(1);
+  await page.getByRole('combobox', { name: 'Año del recuerdo' }).selectOption('1980');
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(0);
+  await expect(page.getByText('No hay recuerdos con esta combinación.')).toBeVisible();
+  await page.getByRole('button', { name: 'Agregar un recuerdo' }).click();
+  await expect(page.getByText('Elegí un lugar en el mapa para tu recuerdo.')).toBeVisible();
+  await page.locator('.memory-map').click({ position: { x: 650, y: 440 } });
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await expect(page.getByRole('textbox', { name: 'Título del recuerdo' })).toBeFocused();
+  await page.getByRole('button', { name: 'Guardar recuerdo' }).click();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await page.getByRole('textbox', { name: 'Título del recuerdo' }).fill('Mi paseo por Caballito');
+  await page.getByRole('spinbutton', { name: 'Año', exact: true }).fill('1994');
+  await page.getByRole('textbox', { name: 'Nombre del lugar' }).fill('Parque Centenario, Buenos Aires');
+  await page.getByRole('textbox', { name: 'Tu historia' }).fill('Fuimos a caminar por el lago y volvimos con una bolsa de libros de la feria.');
+  await page.getByRole('button', { name: 'Guardar recuerdo' }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page.locator('.app')).toHaveClass(/era-1990/);
+  await expect(page.getByRole('heading', { name: 'Mi paseo por Caballito' })).toBeVisible();
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(8);
+  await page.reload();
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(8);
+  await page.getByRole('button', { name: 'Historias', exact: true }).click();
+  await page.locator('.memory-list').getByRole('button', { name: /Mi paseo por Caballito/ }).click();
+  await expect(page.getByRole('heading', { name: 'Mi paseo por Caballito' })).toBeVisible();
+  await page.getByRole('button', { name: 'Agregar un recuerdo' }).click();
+  await page.locator('.memory-map').click({ position: { x: 550, y: 450 } });
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page.locator('.marker-provisional')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Agregar un recuerdo' })).toBeFocused();
+  expect(errors).toEqual([]);
+});
+
+test('datos culturales verificables, navegación y filtrado por año', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading', { name: 'Los juguetes cobraron vida' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'The Walt Disney Company' })).toHaveAttribute('href', /thewaltdisneycompany.com/);
+  await page.getByRole('button', { name: 'Siguiente dato' }).click();
+  await expect(page.getByRole('heading', { name: 'La Web se abrió al mundo' })).toBeVisible();
+  await page.getByRole('button', { name: 'Cerrar datos de época' }).click();
+  await expect(page.locator('.era-fact-popup')).toHaveCount(0);
+  await page.getByRole('button', { name: 'La época', exact: true }).click();
+  await expect(page.locator('.era-fact-popup')).toBeVisible();
+  await page.getByRole('button', { name: 'Década de 2000' }).click();
+  await expect(page.getByRole('heading', { name: 'Un ogro se robó la película' })).toBeVisible();
+  await page.getByRole('combobox', { name: 'Año del recuerdo' }).selectOption('2004');
+  await expect(page.getByRole('heading', { name: 'Una generación bañada en oro' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Siguiente dato' })).toBeDisabled();
+  await page.getByRole('combobox', { name: 'Año del recuerdo' }).selectOption('2003');
+  await expect(page.getByText('No tenemos datos verificados de 2003', { exact: false })).toBeVisible();
+});
+
+test('música real: carga explícita, pistas por década y cierre que detiene el proveedor', async ({ page }) => {
+  // La prueba no depende de la cuenta, licencias ni red de Spotify.
+  // Verifica nuestra integración; la reproducción real se revisa por separado.
+  await page.route('https://open.spotify.com/embed/**', route => route.fulfill({ contentType: 'text/html', body: '<html lang="es"><body>Proveedor de música aislado para la prueba</body></html>' }));
+  await page.goto('/');
+  await expect(page.locator('.spotify-player')).toHaveCount(0);
+  await expect(page.locator('.music-card')).toContainText('Michael Jackson');
+  await page.getByRole('button', { name: 'Abrir reproductor', exact: true }).click();
+  await expect(page.locator('.spotify-player')).toHaveAttribute('src', /6bsCZtBsAvu4u2ueA7saDo/);
+  await expect(page.locator('.spotify-player')).not.toHaveAttribute('src', /autoplay=1|autoplay=true/);
+  await expect(page.getByRole('link', { name: 'Abrir Spotify' })).toHaveAttribute('href', 'https://open.spotify.com/track/6bsCZtBsAvu4u2ueA7saDo');
+  await page.getByRole('button', { name: 'Pista siguiente' }).click();
+  await expect(page.locator('.music-card')).toContainText('Soda Stereo');
+  await expect(page.locator('.spotify-player')).toHaveAttribute('src', /5jVvwEH4nsTrDf2pU3IW2i/);
+  await page.getByRole('button', { name: 'Década de 1980' }).click();
+  await expect(page.locator('.spotify-player')).toHaveCount(0);
+  await expect(page.locator('.music-card')).toContainText("Guns N' Roses");
+  await page.getByRole('button', { name: 'Abrir reproductor', exact: true }).click();
+  await expect(page.locator('.spotify-player')).toHaveAttribute('src', /5r9AgnhkPQXeKG1w5rauDq/);
+  await page.getByRole('button', { name: 'Cerrar reproductor y detener música', exact: true }).click();
+  await expect(page.locator('.spotify-player')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Década de 2000' }).click();
+  await expect(page.locator('.music-card')).toContainText('Linkin Park');
+});
+
+test('móvil: mapa ocupa el fondo, paneles excluyentes, atribución visible y formulario', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const map = await page.locator('.memory-map').boundingBox();
+  expect(map!.y).toBe(0); expect(map!.width).toBe(390); expect(map!.height).toBe(785);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  const attribution = await page.locator('.leaflet-control-attribution').boundingBox();
+  const navigation = await page.locator('.navigation-rail').boundingBox();
+  expect(attribution!.y + attribution!.height).toBeLessThanOrEqual(navigation!.y + 1);
+  await page.getByRole('button', { name: 'Historias', exact: true }).click();
+  await expect(page.locator('.era-fact-popup')).toHaveCount(0);
+  await page.locator('.memory-list').getByRole('button', { name: /La ronda de mate/ }).click();
+  await expect(page.getByRole('heading', { name: 'La ronda de mate del Parque Centenario' })).toBeVisible();
+  await page.getByRole('button', { name: 'Agregar un recuerdo' }).click();
+  await expect(page.locator('.stories-drawer')).toHaveCount(0);
+  await page.locator('.memory-map').click({ position: { x: 180, y: 410 } });
+  await expect(page.getByRole('dialog')).toBeVisible();
+  const box = await page.getByRole('dialog').boundingBox();
+  expect(box!.width).toBeLessThanOrEqual(390);
+  await page.getByRole('button', { name: 'Cancelar', exact: true }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+});
+
+test('mapa bloqueado, datos corruptos y almacenamiento lleno mantienen la app utilizable', async ({ page }) => {
+  await page.route('https://tile.openstreetmap.org/**', route => route.abort());
+  await page.addInitScript(() => localStorage.setItem('nostalgia.memories.v1', '{bad'));
+  await page.goto('/');
+  await expect(page.getByText('No pudimos recuperar los recuerdos de este navegador. Podés seguir explorando.')).toBeVisible();
+  await expect(page.locator('.map-error')).toBeVisible();
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(7);
+  await page.getByRole('button', { name: 'Cerrar aviso' }).click();
+  await page.getByRole('button', { name: 'Agregar un recuerdo' }).click();
+  await page.locator('.memory-map').click({ position: { x: 510, y: 405 } });
+  await page.getByRole('textbox', { name: 'Título del recuerdo' }).fill('No perder el texto');
+  await page.getByRole('textbox', { name: 'Nombre del lugar' }).fill('Lugar de prueba');
+  await page.getByRole('textbox', { name: 'Tu historia' }).fill('El formulario debe seguir abierto.');
+  await page.evaluate(() => { Storage.prototype.setItem = () => { throw new DOMException('Quota exceeded', 'QuotaExceededError'); }; });
+  await page.getByRole('button', { name: 'Guardar recuerdo' }).click();
+  await expect(page.getByRole('alert')).toContainText('No se pudo guardar');
+  await expect(page.getByRole('textbox', { name: 'Título del recuerdo' })).toHaveValue('No perder el texto');
+});
+
+test('identidades de época, menú Inicio y cambios sin ventanas duplicadas', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/');
+  const systemFont = await page.locator('h1').evaluate(e => getComputedStyle(e).fontFamily);
+  await page.getByRole('button', { name: 'Inicio', exact: true }).click();
+  await expect(page.getByRole('navigation', { name: 'Menú de inicio' })).toBeVisible();
+  await page.getByRole('button', { name: 'Abrir mis recuerdos', exact: true }).click();
+  await expect(page.locator('.stories-drawer')).toBeVisible();
+  await expect(page.getByRole('navigation', { name: 'Menú de inicio' })).toBeHidden();
+  await page.getByRole('button', { name: 'Minimizar paneles y ver el mapa' }).click();
+  await expect(page.locator('.stories-drawer')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Década de 1980' }).click();
+  const arcadeFont = await page.locator('h1').evaluate(e => getComputedStyle(e).fontFamily);
+  expect(arcadeFont).not.toBe(systemFont);
+  await expect(page.locator('.vhs-status')).toBeVisible();
+  await expect(page.locator('.system-taskbar')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Década de 2000' }).click();
+  const messengerFont = await page.locator('h1').evaluate(e => getComputedStyle(e).fontFamily);
+  expect(messengerFont).not.toBe(arcadeFont);
+  expect(messengerFont).not.toBe(systemFont);
+  await expect(page.locator('.era-shell-top')).toContainText('Internet Explorer');
+  await page.getByRole('button', { name: 'Mis espacios', exact: true }).click();
+  await expect(page.getByRole('navigation', { name: 'Menú de inicio' })).toBeVisible();
+  // An era change also dismisses the old native popover.
+  await page.getByRole('button', { name: 'Década de 1990' }).click();
+  await expect(page.getByRole('navigation', { name: 'Menú de inicio' })).toBeHidden();
+  await expect(page.locator('.era-shell-top')).toHaveCount(1);
+  await expect(page.locator('.system-taskbar')).toHaveCount(1);
+  await expect(page.locator('#era-start-menu')).toHaveCount(1);
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const year of [1980, 1990, 2000]) {
+    await page.getByRole('button', { name: `Década de ${year}` }).click();
+    await expect(page.getByRole('button', { name: 'Agregar un recuerdo' })).toBeVisible();
+    await page.getByRole('button', { name: 'Historias', exact: true }).click();
+    await expect(page.locator('.stories-drawer')).toBeVisible();
+    const drawer = await page.locator('.stories-drawer').boundingBox();
+    expect(drawer!.x).toBeGreaterThanOrEqual(0);
+    expect(drawer!.x + drawer!.width).toBeLessThanOrEqual(390);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.getByRole('button', { name: 'Década de 1980' }).click();
+  expect(await page.locator('.era-atmosphere').evaluate(e => getComputedStyle(e, '::after').backgroundImage)).toBe('none');
+});

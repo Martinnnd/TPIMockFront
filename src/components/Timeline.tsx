@@ -1,0 +1,5 @@
+import { Clock3 } from 'lucide-react';
+import type { Period } from '../types';
+export default function Timeline({ period, onChange }: { period: Period; onChange: (p: Period) => void }) {
+  return <section className="timeline" aria-label="Viajar en el tiempo"><Clock3 className="timeline-clock" size={19}/><div className="decades">{([1980, 1990, 2000] as const).map(decade => <button key={decade} aria-label={`Década de ${decade}`} aria-pressed={period.decade === decade} className={period.decade === decade ? 'active' : ''} onClick={() => onChange({ decade, year: null })}>{decade === 2000 ? '2000' : `${String(decade).slice(2)}s`}</button>)}</div><label className="year-picker"><span className="sr-only">Año del recuerdo</span><select value={period.year ?? ''} onChange={e => onChange({ ...period, year: e.target.value ? Number(e.target.value) : null })}><option value="">Toda la década</option>{Array.from({ length: 10 }, (_, i) => period.decade + i).map(year => <option key={year}>{year}</option>)}</select></label></section>;
+}
