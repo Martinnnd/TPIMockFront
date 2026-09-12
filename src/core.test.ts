@@ -6,7 +6,7 @@ import { isMemory, loadMemories, saveMemories } from './storage';
 const local: Memory = { ...initialMemories[0], id: 'local-1', source: 'local' };
 describe('Exploración temporal', () => {
   it('ofrece siete escenas por década en lugares distintos', () => {
-    for (const decade of [1980, 1990, 2000] as const) {
+    for (const decade of [1970, 1980, 1990, 2000] as const) {
       const memories = filterMemories(initialMemories, { decade, year: null }, 'Todas');
       expect(memories).toHaveLength(7);
       expect(new Set(memories.map(m => m.place)).size).toBe(7);
@@ -23,7 +23,7 @@ describe('Contenido de época', () => {
   it('separa datos culturales verificados de los pines y respeta década y año', () => {
     expect(factsForPeriod({ decade: 1990, year: 1995 }).map(f => f.id)).toEqual(['toystory']);
     expect(factsForPeriod({ decade: 1980, year: 1980 })).toEqual([]);
-    for (const decade of [1980, 1990, 2000] as const) {
+    for (const decade of [1970, 1980, 1990, 2000] as const) {
       expect(factsForPeriod({ decade, year: null })).toHaveLength(3);
       expect(musicByDecade[decade].every(t => t.year >= decade && t.year < decade + 10)).toBe(true);
     }
@@ -41,7 +41,7 @@ describe('Contenido de época', () => {
 });
 describe('Persistencia resistente a errores', () => {
   it('recupera solo recuerdos locales válidos y elimina duplicados', () => {
-    const result = loadMemories({ getItem: () => JSON.stringify([local, local, { ...local, year: 1979 }, initialMemories[0], null]) });
+    const result = loadMemories({ getItem: () => JSON.stringify([local, local, { ...local, year: 1969 }, initialMemories[0], null]) });
     expect(result.memories).toEqual([local]); expect(result.warning).not.toBe('');
   });
   it('maneja JSON corrupto, estructuras incorrectas y acceso bloqueado', () => {

@@ -104,3 +104,13 @@ No se publica ni se hace push automáticamente. Cuando decidas desplegar, import
 - Se necesita conexión para las teselas de OpenStreetMap y Spotify. Google Fonts tiene fuentes del sistema como alternativa. No hay backend ni APIs para obtener el dataset.
 - La cartografía representa la geografía actual. Se conserva su atribución; no hay descarga masiva, precarga ni caché offline de mapas.
 - No incluye login, chat, perfiles ni subida de archivos. Usá un navegador moderno compatible con `<dialog>`, `crypto.randomUUID` y almacenamiento local.
+
+### Controles compactos y reproductores
+
+La época activa y la categoría elegida se muestran en selectores compactos. Los tres puntos abren las opciones; elegir una, hacer clic afuera o presionar Escape cierra el menú. Las categorías están debajo del selector temporal.
+
+El reproductor representa un tocadiscos de madera en los 80, una radio con casetera en los 90 y un reproductor de bolsillo con rueda en los 2000. Los controles mantienen la integración con Spotify. En móvil se usa una versión compacta; al abrirla aparecen también los detalles del dispositivo.
+
+### Edición de los setenta
+
+La década 1970–1979 agrega una identidad de revista y periódico: titulares serif, tinta azul y naranja, papel crema, marcos de doble línea y mapa sepia con grano y pliegues decorativos. Mantiene los controles compartidos e incluye siete escenas ficticias en lugares reales, tres datos culturales con fuentes y dos canciones de ABBA y Queen. El formulario y la persistencia aceptan recuerdos desde 1970. Las otras décadas conservan sus temas.

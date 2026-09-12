@@ -12,7 +12,7 @@ export default function MemoryForm({ point, decade, onCancel, onSave }: { point:
     const data = new FormData(event.currentTarget);
     const title = String(data.get('title')).trim(), place = String(data.get('place')).trim(), description = String(data.get('description')).trim();
     const year = Number(data.get('year'));
-    if (!title || !place || !description || !Number.isInteger(year) || year < 1980 || year > 2009) { setError('Completá los campos y elegí un año entre 1980 y 2009.'); return; }
+    if (!title || !place || !description || !Number.isInteger(year) || year < 1970 || year > 2009) { setError('Completá los campos y elegí un año entre 1970 y 2009.'); return; }
     const result = onSave({ id: crypto.randomUUID(), title, place, year, category: data.get('category') as Memory['category'], description, author: 'Vos', source: 'local', ...point });
     if (result) setError(result);
   }
@@ -22,7 +22,7 @@ export default function MemoryForm({ point, decade, onCancel, onSave }: { point:
     <div className="coordinate-label"><MapPin size={16}/> Ubicación elegida: {point.lat.toFixed(4)}, {point.lng.toFixed(4)}</div>
     <form onSubmit={submit}>
       <label>Título del recuerdo<input ref={titleInput} name="title" autoFocus required maxLength={90} placeholder="Ese verano que no me olvido"/></label>
-      <div className="form-row"><label>Año<input name="year" type="number" required min="1980" max="2009" defaultValue={decade + 5}/></label><label>Categoría<select name="category" defaultValue="Personales">{categories.map(c => <option key={c}>{c}</option>)}</select></label></div>
+      <div className="form-row"><label>Año<input name="year" type="number" required min="1970" max="2009" defaultValue={decade + 5}/></label><label>Categoría<select name="category" defaultValue="Personales">{categories.map(c => <option key={c}>{c}</option>)}</select></label></div>
       <label>Nombre del lugar<input name="place" required maxLength={120} placeholder="Una plaza, tu barrio, aquel café…"/></label>
       <label>Tu historia<textarea name="description" required minLength={1} maxLength={1800} rows={4} placeholder="Contanos qué hace especial a este recuerdo."/></label>
       {error && <p className="form-error" role="alert">{error}</p>}

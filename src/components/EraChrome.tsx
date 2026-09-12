@@ -5,7 +5,7 @@ import { eraThemes } from '../themes';
 
 type Destination = 'map' | 'stories' | 'facts' | 'music';
 export function EraIcon({ decade, destination, size = 21 }: { decade: Decade; destination: Destination; size?: number }) {
-  const icons = decade === 1980 ? { map: Gamepad2, stories: CassetteTape, facts: Sparkles, music: Radio }
+  const icons = decade === 1970 ? { map: Map, stories: Newspaper, facts: BookOpen, music: Radio } : decade === 1980 ? { map: Gamepad2, stories: CassetteTape, facts: Sparkles, music: Radio }
     : decade === 1990 ? { map: Monitor, stories: FolderOpen, facts: Newspaper, music: Music2 }
     : { map: Globe2, stories: Users, facts: BookOpen, music: Music2 };
   const Icon = icons[destination];
@@ -23,10 +23,10 @@ export default function EraChrome({ period, count, panelOpen, musicOpen, onNavig
   return <div className="era-chrome">
     <div className="era-shell-top">
       <span className="shell-caption"><EraIcon decade={period.decade} destination="map" size={14}/>{theme.windowTitle}</span>
-      {period.decade === 1980 ? <span className="vhs-signal" aria-hidden="true">SP <i/> TRACKING ━━━</span> : <div className="shell-actions"><button onClick={() => navigate('facts')} aria-label="Abrir datos desde la barra de título" title="Datos de época">?</button><button onClick={() => navigate('map')} aria-label="Minimizar paneles y ver el mapa" title="Minimizar paneles">_</button></div>}
+      {period.decade === 1970 ? <span>ARCHIVO NACIONAL / {periodLabel}</span> : period.decade === 1980 ? <span className="vhs-signal" aria-hidden="true">SP <i/> TRACKING ━━━</span> : <div className="shell-actions"><button onClick={() => navigate('facts')} aria-label="Abrir datos desde la barra de título" title="Datos de época">?</button><button onClick={() => navigate('map')} aria-label="Minimizar paneles y ver el mapa" title="Minimizar paneles">_</button></div>}
     </div>
     <div className="era-atmosphere" aria-hidden="true"><div className="vhs-horizon"/><span className="vhs-tape">ARGENTINA<br/>CINTA {periodLabel}</span></div>
-    {period.decade === 1980 ? <div className="vhs-status" aria-hidden="true"><span>HI-FI STEREO</span><span>✦ {count.toString().padStart(2, '0')} RECUERDOS · {periodLabel} ✦</span><span>VHS / NOSTALGIA</span></div> : <>
+    {period.decade === 1970 ? <footer className="press-footer"><span>HEMEROTECA NOSTALGIA</span><span>{count} recuerdos / {periodLabel}</span><span>EDICIÓN ARGENTINA</span></footer> : period.decade === 1980 ? <div className="vhs-status" aria-hidden="true"><span>HI-FI STEREO</span><span>✦ {count.toString().padStart(2, '0')} RECUERDOS · {periodLabel} ✦</span><span>VHS / NOSTALGIA</span></div> : <>
       <footer className="system-taskbar" aria-label="Barra de tareas">
         <button className="start-button" popoverTarget="era-start-menu"><span className="system-logo" aria-hidden="true"><i/><i/><i/><i/></span>{period.decade === 1990 ? 'Inicio' : 'Mis espacios'}</button>
         <span className="taskbar-separator"/>

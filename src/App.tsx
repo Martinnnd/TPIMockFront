@@ -29,6 +29,17 @@ export default function App() {
     try { const loaded = loadMemories(window.localStorage); setLocal(loaded.memories); setNotice(loaded.warning); }
     catch { setNotice('El almacenamiento está desactivado en este navegador. Podés explorar los recuerdos de demostración.'); }
   }, []);
+  useEffect(() => {
+    const closeMenus = (event: MouseEvent | KeyboardEvent) => {
+      if (event instanceof KeyboardEvent && event.key !== 'Escape') return;
+      document.querySelectorAll<HTMLDetailsElement>('.compact-menu[open]').forEach(menu => {
+        if (event instanceof KeyboardEvent || !menu.contains(event.target as Node)) menu.open = false;
+      });
+    };
+    document.addEventListener('click', closeMenus);
+    document.addEventListener('keydown', closeMenus);
+    return () => { document.removeEventListener('click', closeMenus); document.removeEventListener('keydown', closeMenus); };
+  }, []);
   const memories = filterMemories([...initialMemories, ...local], period, category);
   const selected = memories.find(m => m.id === selectedId) ?? null;
   function changePeriod(next: Period) {
@@ -85,11 +96,11 @@ export default function App() {
       <span className="rail-footer">UNLaM<br/><strong>DEMO</strong></span>
     </nav>
     <header className="map-toolbar">
-      <div className="brand-card"><span className="brand-era-label" aria-hidden="true">{period.decade === 1980 ? 'EST. 1980 / VIDEO ARCHIVE' : period.decade === 1990 ? 'Mi escritorio' : 'Nostalgia Messenger'}</span><h1>{theme.brand}<span>.</span></h1><span>{theme.subtitle}</span></div>
-      <Timeline period={period} onChange={changePeriod}/>
+      <div className="brand-card"><span className="brand-era-label" aria-hidden="true">{period.decade === 1970 ? 'EDICIÓN ESPECIAL / 1970–1979' : period.decade === 1980 ? 'EST. 1980 / VIDEO ARCHIVE' : period.decade === 1990 ? 'Mi escritorio' : 'Nostalgia Messenger'}</span><h1>{theme.brand}<span>.</span></h1><span>{theme.subtitle}</span></div>
+      <div className="compact-selectors"><Timeline period={period} onChange={changePeriod}/><details className="filters compact-menu"><summary>{category === 'Personales' ? 'Recuerdos personales' : category}<span aria-hidden="true">...</span><span className="sr-only">Elegir categoría</span></summary><div className="category-options" role="group" aria-label="Filtrar por categoría">{(['Todas', ...categories] as const).map(c => <button key={c} aria-pressed={category === c} className={category === c ? 'active' : ''} onClick={event => { setCategory(c); setSelectedId(null); event.currentTarget.closest('details')?.removeAttribute('open'); }}><span aria-hidden="true">{c === 'Todas' ? '✳' : symbols[c]}</span>{c === 'Personales' ? 'Recuerdos personales' : c}</button>)}</div></details></div>
       <button ref={addButton} className="primary-button add-button" onClick={startAdding} disabled={picking || !!draft}><Plus size={18}/><span>Agregar un recuerdo</span></button>
     </header>
-    <div className="filters" role="group" aria-label="Filtrar por categoría">{(['Todas', ...categories] as const).map(c => <button key={c} aria-pressed={category === c} className={category === c ? 'active' : ''} onClick={() => { setCategory(c); setSelectedId(null); }}><span aria-hidden="true">{c === 'Todas' ? '✳' : symbols[c]}</span>{c === 'Personales' ? 'Recuerdos personales' : c}</button>)}</div>
+
     <div className="map-period"><Compass size={17}/><strong>{eraContent[period.decade].label}</strong><span>{period.year ?? `${period.decade} — ${period.decade + 9}`}</span><i/><span>{memories.length} recuerdos</span></div>
     {panelOpen && <div className="stories-drawer"><div className="drawer-heading"><span className="eyebrow">{theme.storiesTitle}</span><button className="icon-button" aria-label="Cerrar historias" onClick={closeStories}><X size={19}/></button></div><SidePanel period={period} selected={selected} onBack={() => setSelectedId(null)} memories={memories} onSelect={select}/></div>}
     {factsOpen && !picking && !draft && <EraFacts key={`${period.decade}-${period.year}`} period={period} onClose={() => setFactsOpen(false)}/>}

@@ -2,6 +2,10 @@ import type { Decade, Period } from './types';
 export interface MusicTrack { title: string; artist: string; year: number; spotifyId: string; reference: string }
 // Año del álbum original, no de una reedición ni del videoclip.
 export const musicByDecade: Record<Decade, MusicTrack[]> = {
+  1970: [
+    { title: 'Dancing Queen', artist: 'ABBA', year: 1976, spotifyId: '01topnfXJFjW4iQMVAXAo8', reference: 'https://open.spotify.com/track/01topnfXJFjW4iQMVAXAo8' },
+    { title: 'Bohemian Rhapsody', artist: 'Queen', year: 1975, spotifyId: '1yslmgUcM2AOkOPS4sl3QV', reference: 'https://open.spotify.com/track/1yslmgUcM2AOkOPS4sl3QV' },
+  ],
   1980: [
     { title: "Sweet Child O' Mine", artist: "Guns N' Roses", year: 1987, spotifyId: '5r9AgnhkPQXeKG1w5rauDq', reference: 'https://open.spotify.com/track/5r9AgnhkPQXeKG1w5rauDq' },
     { title: 'Welcome to the Jungle', artist: "Guns N' Roses", year: 1987, spotifyId: '5NIPsWpDjJTFBoPxCUUeXp', reference: 'https://open.spotify.com/track/5NIPsWpDjJTFBoPxCUUeXp' },
@@ -19,6 +23,9 @@ export interface EraFact { id: string; year: number; kind: 'Cine' | 'Música' | 
 // Verificados el 12/09/2026. No tienen coordenadas: la cultura internacional
 // no se convierte en un pin argentino si el hecho ocurrió en otro país.
 export const eraFacts: EraFact[] = [
+  { id: 'starwars', year: 1977, kind: 'Cine', title: 'Una galaxia llegó a las salas', description: 'Star Wars se estrenó el 25 de mayo de 1977 en Estados Unidos. La aventura de Luke, Leia y Han sería conocida más tarde como Una nueva esperanza. Esta fecha corresponde al estreno original, no al argentino.', dateLabel: 'Estreno original · 1977', scope: 'Cultura internacional', source: 'https://www.starwars.com/films/star-wars-episode-iv-a-new-hope', sourceName: 'Star Wars · sitio oficial' },
+  { id: 'voyager', year: 1977, kind: 'Tecnología', title: 'Dos viajeras rumbo a los planetas', description: 'Las sondas Voyager 2 y Voyager 1 despegaron en agosto y septiembre de 1977. Comenzaba un viaje de exploración de los planetas exteriores que llevaría instrumentos y cámaras mucho más allá de la Tierra.', dateLabel: 'Agosto y septiembre · 1977', scope: 'Estados Unidos · Exploración espacial', source: 'https://science.nasa.gov/mission/voyager/fact-sheet/', sourceName: 'NASA' },
+  { id: 'arrival', year: 1976, kind: 'Música', title: 'ABBA invitó a todos a bailar', description: 'Arrival apareció en Suecia en octubre de 1976. El álbum incluye Dancing Queen y Knowing Me, Knowing You, canciones que quedaron asociadas al sonido pop de los setenta.', dateLabel: 'Publicación del álbum · 1976', scope: 'Cultura internacional', source: 'https://abbasite.com/articles/in-focus-arrival-the-making-of-a-classic-pop-album/', sourceName: 'ABBA · sitio oficial' },
   { id: 'bttf', year: 1985, kind: 'Cine', title: 'Un DeLorean nos llevó al futuro', description: 'Volver al futuro llegó al cine en 1985. Marty McFly viaja a 1955 y tiene que encontrar la forma de regresar. La fecha corresponde al estreno original en Estados Unidos, no al estreno argentino.', dateLabel: 'Estreno original · 1985', scope: 'Cultura internacional', source: 'https://amblin.com/movie/back-to-the-future/', sourceName: 'Amblin' },
   { id: 'democracy', year: 1983, kind: 'Acontecimientos', title: 'Argentina recuperó la democracia', description: 'El 10 de diciembre de 1983 asumió Raúl Alfonsín y comenzó una nueva etapa democrática, después de la última dictadura cívico-militar.', dateLabel: '10 de diciembre de 1983', scope: 'Argentina', source: 'https://www.argentina.gob.ar/noticias/10-de-diciembre-dia-de-la-restauracion-de-la-democracia-2', sourceName: 'Argentina.gob.ar' },
   { id: 'appetite', year: 1987, kind: 'Música', title: 'El debut de los Guns', description: 'Appetite for Destruction se publicó en 1987. En ese álbum ya estaban Sweet Child O’ Mine y Welcome to the Jungle: dos temas para volver a los ochenta.', dateLabel: 'Publicación del álbum · 1987', scope: 'Cultura internacional', source: 'https://open.spotify.com/track/5NIPsWpDjJTFBoPxCUUeXp', sourceName: 'Spotify · créditos del álbum' },

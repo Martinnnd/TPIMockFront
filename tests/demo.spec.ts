@@ -19,8 +19,10 @@ test('mapa a pantalla completa, filtros, historias y creación persistente', asy
   await expect(page.getByText('Autor ficticio · dato de demostración')).toBeVisible();
   await page.getByRole('button', { name: 'Cerrar historias' }).click();
   await expect(page.getByRole('button', { name: 'Historias', exact: true })).toBeFocused();
+  await page.locator('.decade-menu summary').click();
   await page.getByRole('button', { name: 'Década de 1980' }).click();
   await expect(page.locator('.app')).toHaveClass(/era-1980/);
+  await page.locator('.filters summary').click();
   await page.getByRole('group', { name: 'Filtrar por categoría' }).getByRole('button', { name: 'Música', exact: true }).click();
   await expect(page.locator('.leaflet-marker-icon')).toHaveCount(1);
   await page.getByRole('combobox', { name: 'Año del recuerdo' }).selectOption('1980');
@@ -66,6 +68,7 @@ test('datos culturales verificables, navegación y filtrado por año', async ({ 
   await expect(page.locator('.era-fact-popup')).toHaveCount(0);
   await page.getByRole('button', { name: 'La época', exact: true }).click();
   await expect(page.locator('.era-fact-popup')).toBeVisible();
+  await page.locator('.decade-menu summary').click();
   await page.getByRole('button', { name: 'Década de 2000' }).click();
   await expect(page.getByRole('heading', { name: 'Un ogro se robó la película' })).toBeVisible();
   await page.getByRole('combobox', { name: 'Año del recuerdo' }).selectOption('2004');
@@ -89,6 +92,7 @@ test('música real: carga explícita, pistas por década y cierre que detiene el
   await page.getByRole('button', { name: 'Pista siguiente' }).click();
   await expect(page.locator('.music-card')).toContainText('Soda Stereo');
   await expect(page.locator('.spotify-player')).toHaveAttribute('src', /5jVvwEH4nsTrDf2pU3IW2i/);
+  await page.locator('.decade-menu summary').click();
   await page.getByRole('button', { name: 'Década de 1980' }).click();
   await expect(page.locator('.spotify-player')).toHaveCount(0);
   await expect(page.locator('.music-card')).toContainText("Guns N' Roses");
@@ -96,6 +100,7 @@ test('música real: carga explícita, pistas por década y cierre que detiene el
   await expect(page.locator('.spotify-player')).toHaveAttribute('src', /5r9AgnhkPQXeKG1w5rauDq/);
   await page.getByRole('button', { name: 'Cerrar reproductor y detener música', exact: true }).click();
   await expect(page.locator('.spotify-player')).toHaveCount(0);
+  await page.locator('.decade-menu summary').click();
   await page.getByRole('button', { name: 'Década de 2000' }).click();
   await expect(page.locator('.music-card')).toContainText('Linkin Park');
 });
@@ -153,11 +158,13 @@ test('identidades de época, menú Inicio y cambios sin ventanas duplicadas', as
   await expect(page.getByRole('navigation', { name: 'Menú de inicio' })).toBeHidden();
   await page.getByRole('button', { name: 'Minimizar paneles y ver el mapa' }).click();
   await expect(page.locator('.stories-drawer')).toHaveCount(0);
+  await page.locator('.decade-menu summary').click();
   await page.getByRole('button', { name: 'Década de 1980' }).click();
   const arcadeFont = await page.locator('h1').evaluate(e => getComputedStyle(e).fontFamily);
   expect(arcadeFont).not.toBe(systemFont);
   await expect(page.locator('.vhs-status')).toBeVisible();
   await expect(page.locator('.system-taskbar')).toHaveCount(0);
+  await page.locator('.decade-menu summary').click();
   await page.getByRole('button', { name: 'Década de 2000' }).click();
   const messengerFont = await page.locator('h1').evaluate(e => getComputedStyle(e).fontFamily);
   expect(messengerFont).not.toBe(arcadeFont);
@@ -166,6 +173,7 @@ test('identidades de época, menú Inicio y cambios sin ventanas duplicadas', as
   await page.getByRole('button', { name: 'Mis espacios', exact: true }).click();
   await expect(page.getByRole('navigation', { name: 'Menú de inicio' })).toBeVisible();
   // An era change also dismisses the old native popover.
+  await page.locator('.decade-menu summary').click();
   await page.getByRole('button', { name: 'Década de 1990' }).click();
   await expect(page.getByRole('navigation', { name: 'Menú de inicio' })).toBeHidden();
   await expect(page.locator('.era-shell-top')).toHaveCount(1);
@@ -173,6 +181,7 @@ test('identidades de época, menú Inicio y cambios sin ventanas duplicadas', as
   await expect(page.locator('#era-start-menu')).toHaveCount(1);
   await page.setViewportSize({ width: 390, height: 844 });
   for (const year of [1980, 1990, 2000]) {
+    await page.locator('.decade-menu summary').click();
     await page.getByRole('button', { name: `Década de ${year}` }).click();
     await expect(page.getByRole('button', { name: 'Agregar un recuerdo' })).toBeVisible();
     await page.getByRole('button', { name: 'Historias', exact: true }).click();
@@ -183,6 +192,60 @@ test('identidades de época, menú Inicio y cambios sin ventanas duplicadas', as
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
   await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.locator('.decade-menu summary').click();
   await page.getByRole('button', { name: 'Década de 1980' }).click();
   expect(await page.locator('.era-atmosphere').evaluate(e => getComputedStyle(e, '::after').backgroundImage)).toBe('none');
+});
+
+test('selectores compactos: opciones ocultas, cierre y dispositivos por epoca', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.decades')).toBeHidden();
+  await expect(page.locator('.category-options')).toBeHidden();
+  const timeline = await page.locator('.timeline').boundingBox();
+  const filters = await page.locator('.filters').boundingBox();
+  expect(filters!.y).toBeGreaterThan(timeline!.y + timeline!.height);
+  await page.locator('.filters summary').click();
+  await page.locator('.category-options button').nth(1).click();
+  await expect(page.locator('.category-options')).toBeHidden();
+  await expect(page.locator('.filters summary')).toContainText('Lugares');
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(1);
+  await page.locator('.filters summary').click();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.category-options')).toBeHidden();
+  for (const [index, selector] of ['.vinyl-platter', '.radio-speaker', '.device-2000 .music-buttons'].entries()) {
+    await page.locator('.decade-menu summary').click();
+    await page.locator('.decades button').nth(index + 1).click();
+    await expect(page.locator('.decades')).toBeHidden();
+    await expect(page.locator(selector).first()).toBeVisible();
+  }
+});
+
+test('1970: revista, datos, musica y recuerdo persistente', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('.decade-menu summary').click();
+  await page.locator('.decades button').first().click();
+  await expect(page.locator('.app')).toHaveClass(/era-1970/);
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(7);
+  await expect(page.locator('.system-taskbar')).toHaveCount(0);
+  await expect(page.locator('.press-footer')).toBeVisible();
+  await expect(page.locator('.music-card')).toContainText('ABBA');
+  await expect(page.locator('.fact-body')).toContainText('Star Wars');
+  await page.locator('.add-button').click();
+  await page.locator('.memory-map').click({ position: { x: 500, y: 390 } });
+  await page.locator('input[name="title"]').fill('Un recuerdo de 1970');
+  await page.locator('input[name="year"]').fill('1970');
+  await page.locator('input[name="place"]').fill('Plaza San Martin, Cordoba');
+  await page.locator('textarea').fill('Nos encontramos para compartir el diario del domingo.');
+  await page.locator('button[type="submit"]').click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.reload();
+  await page.locator('.decade-menu summary').click();
+  await page.locator('.decades button').first().click();
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(8);
+  await page.setViewportSize({ width: 320, height: 740 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await expect(page.locator('.add-button')).toBeVisible();
+  await page.screenshot({ path: 'test-results/seventies-mobile.png' });
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.screenshot({ path: 'test-results/seventies-desktop.png' });
 });
