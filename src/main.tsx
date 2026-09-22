@@ -4,5 +4,6 @@ import 'leaflet/dist/leaflet.css';
 import './styles.css';
 import './themes.css';
 import './social.css';
+import './components/mapbox.css';
 import App from './App';
 ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);

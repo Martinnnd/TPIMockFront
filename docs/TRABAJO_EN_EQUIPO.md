@@ -71,6 +71,6 @@ npm run test:e2e:ui             # Recorridos funcionales y apariencia
 npm run build
 ```
 
-`npm run test:e2e` ejecuta todos los recorridos de interfaz: mapa 2D, feed, perfil y mapa ampliado. El mapa 3D queda para una futura implementacion y no forma parte del proyecto actual.
+`npm run test:e2e` ejecuta todos los recorridos de interfaz: mapa 2D, feed, perfil y mapa ampliado. La pantalla principal ahora integra el globo Mapbox mediante MainMap.tsx y MapboxMap.tsx. Necesita VITE_MAPBOX_ACCESS_TOKEN. Sin token o sin WebGL se conserva el mapa 2D. Los mapas del feed y perfil siguen siendo 2D.
 
 El chequeo de arquitectura rechaza imports de otra carpeta de época, dependencias hacia los agregadores que crearían ciclos y selectores CSS que invadan otro equipo. No se configuraron responsables de GitHub ficticios: al conocer los usuarios del equipo se puede agregar CODEOWNERS.

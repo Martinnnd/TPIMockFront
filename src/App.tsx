@@ -4,6 +4,7 @@ import { categories, filterMemories, symbols, type Category, type Decade, type M
 import { eraContent, initialMemories } from './data';
 import { loadMemories, saveMemories } from './storage';
 import MapModal from './components/MapModal';
+import MainMap from './components/MainMap';
 import Profile from './components/Profile';
 import SocialFeed from './components/SocialFeed';
 import Timeline from './components/Timeline';
@@ -97,9 +98,10 @@ export default function App() {
     if (destination === 'map') setSelectedId(null);
   }
   const theme = eraThemes[period.decade];
+  const ActiveMap = view === 'map' ? MainMap : MemoryMap;
   return <div style={theme.tokens} className={`app map-app view-${view} era-${period.decade} ${panelOpen ? 'stories-open' : ''} ${musicOpen ? 'music-open' : ''}`}>
     <a className="skip-link" href="#explore">Saltar al mapa</a>
-    {view !== 'profile' && <main id="explore" className="map-canvas"><MemoryMap memories={memories} selected={selected} onSelect={select} picking={picking} onPick={point => { setDraft(point); setPicking(false); }} draft={draft} onCancel={cancel}/>{view === 'feed' && <button ref={mapExpandButton} className="mini-map-expand" aria-label="Ampliar mapa" aria-haspopup="dialog" onClick={() => setMapExpanded(true)}><span>Ampliar mapa</span></button>}</main>}
+    {view !== 'profile' && <main id="explore" className="map-canvas"><ActiveMap memories={memories} selected={selected} onSelect={select} picking={picking} onPick={point => { setDraft(point); setPicking(false); }} draft={draft} onCancel={cancel}/>{view === 'feed' && <button ref={mapExpandButton} className="mini-map-expand" aria-label="Ampliar mapa" aria-haspopup="dialog" onClick={() => setMapExpanded(true)}><span>Ampliar mapa</span></button>}</main>}
     <EraChrome period={period} count={visibleMemories.length} panelOpen={panelOpen} musicOpen={musicOpen} onNavigate={navigate}/>
     <nav className="navigation-rail" aria-label="Navegación principal">
       <span className="rail-logo" aria-hidden="true">n<span>✳</span></span>

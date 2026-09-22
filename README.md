@@ -128,3 +128,15 @@ El perfil reúne los recuerdos locales de la época elegida y muestra el total g
 El perfil ahora tiene una vista independiente: encabezado, contadores de recuerdos, seguidores, seguidos y lugares, un mapa grande con publicaciones propias y una colección de tarjetas. El mapa y la colección respetan los filtros; los contadores resumen todo el archivo local. Seleccionar un pin o una tarjeta abre el recuerdo completo. Crear un recuerdo desde el perfil regresa al perfil al guardar o cancelar.
 
 Sin autenticación, los seguidores se muestran en cero y los seguidos reflejan las selecciones del feed durante la sesión. No se presentan publicaciones de otros autores como propias.
+
+## Globo Mapbox (pantalla principal)
+
+Copiar .env.example a .env.local y reemplazar VITE_MAPBOX_ACCESS_TOKEN por un token publico propio de Mapbox (pk.). Reiniciar npm run dev. No usar tokens secretos sk. ni subir .env.local a GitHub. En el despliegue configurar la misma variable y reconstruir.
+
+El globo usa Mapbox Standard con atmosfera, estrellas, iluminacion, temas Original/Suave/Monocromo y opcion satelite. Se conservan filtros, publicaciones, seleccion y creacion por clic o Enter. Los mapas de feed/perfil siguen en Leaflet. Sin token, o si no hay WebGL, se muestra el mapa 2D con un aviso; los errores de red permiten volver a 2D.
+
+El token publico es visible en el navegador por dise?o. Usar permisos publicos y restricciones de URL compatibles con localhost y el dominio de despliegue. La cuenta de Mapbox debe tener habilitado el acceso correspondiente; las solicitudes quedan sujetas a su plan.
+
+Verificacion: npm run check, npm test, npm run build. La suite actual tests/demo.spec.ts comprueba el recorrido 2D sin token; la carga real de Mapbox requiere token y conexion.
+
+Referencia: https://docs.mapbox.com/mapbox-gl-js/guides/globe/
