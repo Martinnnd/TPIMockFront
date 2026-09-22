@@ -249,3 +249,100 @@ test('1970: revista, datos, musica y recuerdo persistente', async ({ page }) => 
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.screenshot({ path: 'test-results/seventies-desktop.png' });
 });
+
+test('feed: epocas, detalle, seguir, comentar, perfil y regreso al mapa', async ({ page }) => {
+  const errors: string[] = [];
+  page.on('pageerror', e => errors.push(e.message));
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Feed', exact: true }).click();
+  await expect(page.locator('.feed-post')).toHaveCount(7);
+  const mini = await page.locator('.memory-map').boundingBox();
+  expect(mini!.width).toBeLessThan(300);
+  for (const decade of [1970, 1980, 1990, 2000]) {
+    await page.locator('.decade-menu summary').click();
+    await page.locator('.decades button').filter({ hasText: decade === 2000 ? '2000' : String(decade).slice(2) + 's' }).click();
+    await expect(page.locator('.feed-post')).toHaveCount(7);
+    const years = await page.locator('.feed-post header small').allTextContents();
+    expect(years.every(t => Number(t.slice(-4)) >= decade && Number(t.slice(-4)) < decade + 10)).toBe(true);
+  }
+  await page.locator('.feed-post .follow-button').first().click();
+  await page.getByRole('button', { name: 'Seguidos', exact: true }).click();
+  await expect(page.locator('.feed-post')).toHaveCount(1);
+  await page.locator('.post-content').click();
+  await page.locator('#feed-comment').fill('Me encanto volver a este lugar.');
+  await page.locator('.post-comments button[type="submit"]').click();
+  await expect(page.locator('.post-comments')).toContainText('Me encanto volver a este lugar.');
+  await page.locator('.post-place').click();
+  await expect(page.locator('.app')).toHaveClass(/view-map/);
+  expect((await page.locator('.memory-map').boundingBox())!.width).toBe(1368);
+  await page.getByRole('button', { name: 'Perfil', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Mi perfil' })).toBeVisible();
+  await expect(page.locator('.profile-note')).toBeVisible();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('button', { name: 'Feed', exact: true }).click();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await expect(page.locator('.feed-heading')).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test('perfil propio: mapa privado, contadores, coleccion y creacion', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('nostalgia.memories.v1', JSON.stringify([
+    { id:'mine-90', title:'Mi plaza de los noventa', year:1994, category:'Personales', description:'Una tarde inolvidable con mis amigos.', place:'Parque Centenario, Buenos Aires', author:'Yo', lat:-34.6065, lng:-58.4355, source:'local' },
+    { id:'mine-70', title:'Mi viaje de los setenta', year:1974, category:'Lugares', description:'El viaje familiar que guardo en mi memoria.', place:'Centro Civico, Bariloche', author:'Yo', lat:-41.1335, lng:-71.3102, source:'local' }
+  ])));
+  await page.setViewportSize({width:1440,height:1000});
+  await page.goto('/');
+  await page.getByRole('button',{name:'Feed',exact:true}).click();
+  await page.locator('.feed-post .follow-button').first().click();
+  await page.getByRole('button',{name:'Perfil',exact:true}).click();
+  await expect(page.locator('.personal-counts dd')).toHaveText(['2','0','1','2']);
+  await expect(page.locator('.personal-profile .leaflet-marker-icon')).toHaveCount(1);
+  await expect(page.locator('.feed-sidebar')).toBeHidden();
+  await page.locator('.personal-memory').click();
+  await expect(page.locator('.personal-detail')).toContainText('Mi plaza de los noventa');
+  await page.locator('.decade-menu summary').click();
+  await page.locator('.decades button').first().click();
+  await expect(page.locator('.personal-detail')).toHaveCount(0);
+  await expect(page.locator('.personal-memory')).toContainText('Mi viaje de los setenta');
+  await expect(page.locator('.personal-profile .leaflet-marker-icon')).toHaveCount(1);
+  await page.locator('.personal-header').getByRole('button',{name:'Crear un recuerdo'}).click();
+  await page.locator('.memory-map').click({position:{x:500,y:390}});
+  await page.locator('input[name="title"]').fill('Otro recuerdo propio');
+  await page.locator('input[name="place"]').fill('La plaza del barrio');
+  await page.locator('textarea').fill('Fui a pasear con mi familia un domingo.');
+  await page.locator('button[type="submit"]').click();
+  await expect(page.locator('.app')).toHaveClass(/view-profile/);
+  await expect(page.locator('.personal-counts dd').first()).toHaveText('3');
+  await expect(page.locator('.personal-detail')).toContainText('Otro recuerdo propio');
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.screenshot({path:'test-results/profile-mobile.png'});
+  await page.setViewportSize({width:1440,height:1000});
+  await page.screenshot({path:'test-results/profile-desktop.png'});
+});
+
+test('mapa ampliado del feed: dialogo, pines, cierre y teclado', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Feed', exact: true }).click();
+  const trigger = page.getByRole('button', { name: 'Ampliar mapa', exact: true });
+  await trigger.click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toBeVisible();
+  expect((await dialog.locator('.memory-map').boundingBox())!.width).toBeGreaterThan(600);
+  await dialog.locator('.leaflet-marker-icon').first().click();
+  await expect(dialog.locator('footer strong')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  await expect(trigger).toBeFocused();
+  await expect(page.locator('.app')).toHaveClass(/view-feed/);
+  await trigger.press('Enter');
+  await page.getByRole('button', { name: 'Cerrar mapa ampliado' }).click();
+  await expect(dialog).toHaveCount(0);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await trigger.click();
+  const box = await dialog.boundingBox();
+  expect(box!.width).toBeLessThanOrEqual(390);
+  await page.mouse.click(2, 2);
+  await expect(dialog).toHaveCount(0);
+});

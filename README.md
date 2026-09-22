@@ -114,3 +114,15 @@ El reproductor representa un tocadiscos de madera en los 80, una radio con caset
 ### Edición de los setenta
 
 La década 1970–1979 agrega una identidad de revista y periódico: titulares serif, tinta azul y naranja, papel crema, marcos de doble línea y mapa sepia con grano y pliegues decorativos. Mantiene los controles compartidos e incluye siete escenas ficticias en lugares reales, tres datos culturales con fuentes y dos canciones de ABBA y Queen. El formulario y la persistencia aceptan recuerdos desde 1970. Las otras décadas conservan sus temas.
+
+### Feed y perfil
+
+La navegación incluye Feed y Perfil. El mapa sigue siendo la vista inicial; en las vistas sociales se reduce a un mapa lateral interactivo. El feed comparte los filtros de época, año y categoría, y adapta su diseño a los cuatro temas. Cada publicación abre su relato completo y permite volver a su ubicación en el mapa. Para vos muestra los recuerdos disponibles; Seguidos filtra los autores seleccionados.
+
+El perfil reúne los recuerdos locales de la época elegida y muestra el total guardado. No hay autenticación todavía. Seguidos, me gusta y comentarios funcionan durante la sesión como interacciones de demostración, sin enviarse a un servidor. Los recuerdos publicados mantienen la persistencia local existente.
+
+### Perfil personal
+
+El perfil ahora tiene una vista independiente: encabezado, contadores de recuerdos, seguidores, seguidos y lugares, un mapa grande con publicaciones propias y una colección de tarjetas. El mapa y la colección respetan los filtros; los contadores resumen todo el archivo local. Seleccionar un pin o una tarjeta abre el recuerdo completo. Crear un recuerdo desde el perfil regresa al perfil al guardar o cancelar.
+
+Sin autenticación, los seguidores se muestran en cero y los seguidos reflejan las selecciones del feed durante la sesión. No se presentan publicaciones de otros autores como propias.

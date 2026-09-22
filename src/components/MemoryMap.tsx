@@ -7,6 +7,11 @@ export type Point = { lat: number; lng: number };
 const center: [number, number] = [-38.4, -64.4];
 function MapActions({ picking, onPick, selected, reset }: { picking: boolean; onPick: (p: Point) => void; selected: Memory | null; reset: number }) {
   const map = useMapEvents({ click(e) { if (picking) onPick({ lat: e.latlng.lat, lng: e.latlng.lng }); } });
+  useEffect(() => {
+    const observer = new ResizeObserver(() => map.invalidateSize({ pan: true, animate: false }));
+    observer.observe(map.getContainer());
+    return () => observer.disconnect();
+  }, [map]);
   useEffect(() => { if (selected) map.setView([selected.lat, selected.lng], Math.max(map.getZoom(), 6), { animate: !matchMedia('(prefers-reduced-motion: reduce)').matches }); }, [selected, map]);
   useEffect(() => { map.setView(center, 4); }, [reset, map]);
   useEffect(() => { map.getContainer().style.cursor = picking ? 'crosshair' : ''; }, [picking, map]);
