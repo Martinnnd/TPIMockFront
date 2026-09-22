@@ -1,3 +1,5 @@
+> **Trabajo en equipo:** el proyecto ahora se organiza por parejas en `src/eras/70s`, `80s`, `90s` y `2000s`. Empezar por [la guia de arquitectura y colaboracion](docs/TRABAJO_EN_EQUIPO.md). Los archivos `data.ts`, `eraData.ts` y `themes.ts` son agregadores; el contenido y los temas se editan dentro de cada epoca.
+
 # Nostalgia
 
 Prototipo frontend del proyecto final de Desarrollo Web de UNLaM. El mapa de Argentina ocupa toda la pantalla: las décadas, categorías, historias, datos culturales y música se exploran mediante controles flotantes. React, TypeScript, Vite y React Leaflet; sin backend, cuentas ni base de datos.
@@ -25,7 +27,7 @@ El build verifica TypeScript y genera `dist/`. `npm test` verifica filtrado, con
 ## Recorrido de la demo
 
 1. Entrá directamente al mapa y abrí un pin. **Historias** también permite leer los recuerdos desde una lista.
-2. Elegí **80s**, **90s** o **2000**. Cambian el tema visual, las historias, los datos culturales y la selección musical. Podés combinar un año con una categoría.
+2. Elegí **70s**, **80s**, **90s** o **2000**. Cambian el tema visual, las historias, los datos culturales y la selección musical. Podés combinar un año con una categoría.
 3. En **La época**, recorré los datos con las flechas y consultá sus fuentes. El panel aparece al cambiar de período, se puede cerrar y no avanza solo. En móvil comienza resumido: **Leer dato** abre el texto completo.
 4. En **Música** o la tarjeta inferior, abrí el reproductor y pulsá reproducir dentro de Spotify. Las flechas cambian de pista. Cerrar el reproductor o cambiar de década desmonta el iframe y detiene su reproducción.
 5. Tocá **Agregar un recuerdo**, elegí un punto del mapa y completá el formulario. También podés enfocar el mapa, moverte con las flechas y pulsar Enter para elegir su centro. Escape cancela.
@@ -41,7 +43,7 @@ La selección utiliza **embeds oficiales de Spotify** con grabaciones comerciale
 - **90s:** Michael Jackson — Black or White; Soda Stereo — De música ligera.
 - **2000:** Linkin Park — In the End; Coldplay — Clocks.
 
-La fecha indicada es el año de publicación en el álbum original, no el año de una reedición ni necesariamente el del sencillo. Los enlaces y referencias están en `src/eraData.ts`.
+La fecha indicada es el año de publicación en el álbum original, no el año de una reedición ni necesariamente el del sencillo. Los enlaces y referencias están en el `content.ts` de cada epoca.
 
 Spotify puede ofrecer solamente una **muestra** dependiendo de la sesión, disponibilidad regional y entorno del reproductor. Siempre hay un enlace **Abrir Spotify** para continuar en el proveedor. No se promete reproducción completa sin cuenta. Los controles de reproducción y las funciones disponibles los proporciona Spotify; no hay controles de audio ficticios. El iframe se carga únicamente al abrir el reproductor y nunca se solicita autoplay.
 
@@ -57,25 +59,25 @@ El selector cambia tipografías, materiales, íconos, marcos de ventana, marcado
 
 Los textos largos conservan tamaños legibles. La distribución principal permanece estable al viajar entre décadas. En móvil se usa la navegación inferior, y se ocultan las barras extra de escritorio para dejar espacio al mapa. Las tipografías web se cargan desde Google Fonts con alternativas locales.
 
-La configuración textual de los temas está en `src/themes.ts`; las reglas visuales, en `src/themes.css`. La estructura común sigue en `src/styles.css`. `EraChrome.tsx` contiene las barras y el menú de escritorio, separados del estado de recuerdos.
+Cada carpeta de `src/eras/` contiene su tema, CSS, Chrome, Player y contenido. El registro central conecta estos modulos con la logica compartida. Los CSS de la raiz conservan estilos comunes.
 
 ## Contenido y fuentes
 
-Hay **21 relatos ficticios** situados en lugares reales de Buenos Aires, Rosario, Córdoba, Mendoza, Mar del Plata, Bariloche y Salta. Sus autores, encuentros y experiencias son ejemplos de demostración, identificados en cada ficha. No se presentan como testimonios históricos. Cada relato cuenta a dónde fueron, con quién y qué ocurrió en la escena imaginada.
+Hay **28 relatos ficticios** situados en lugares reales de Buenos Aires, Rosario, Córdoba, Mendoza, Mar del Plata, Bariloche y Salta. Sus autores, encuentros y experiencias son ejemplos de demostración, identificados en cada ficha. No se presentan como testimonios históricos. Cada relato cuenta a dónde fueron, con quién y qué ocurrió en la escena imaginada.
 
-Separadamente, hay **9 datos culturales verificados** sobre cine, música, tecnología, democracia y deporte. Cada entrada en `src/eraData.ts` contiene año, alcance geográfico, descripción y enlace a la fuente. Se consultaron Amblin, Disney, DreamWorks, Argentina.gob.ar, CERN, FIBA, el sitio oficial de Michael Jackson y los créditos de Spotify. Las fechas de películas corresponden al estreno original, no al estreno argentino. Estos datos no tienen pines arbitrarios: un estreno internacional o un torneo disputado en Grecia no se ubica en Argentina.
+Separadamente, hay **12 datos culturales** sobre cine, música, tecnología, democracia y deporte. Cada entrada en el `content.ts` de cada epoca contiene año, alcance geográfico, descripción y enlace a la fuente. Se consultaron Amblin, Disney, DreamWorks, Argentina.gob.ar, CERN, FIBA, el sitio oficial de Michael Jackson y los créditos de Spotify. Las fechas de películas corresponden al estreno original, no al estreno argentino. Estos datos no tienen pines arbitrarios: un estreno internacional o un torneo disputado en Grecia no se ubica en Argentina.
 
 ### Agregar historias e imágenes
 
-En `src/data.ts`, sumá una entrada a `scenes` con ubicación, título, año (1980–2009), categoría, autor y descripción. Para otro lugar, agregá coordenadas concretas a `locations`. Las escenas iniciales usan `source: 'demo'`; las creadas mediante el formulario usan `source: 'local'` y autor `Vos`.
+En el `content.ts` de tu equipo, agrega una entrada a `memories` con ID unico, coordenadas, titulo, anio, categoria, autor y descripcion. Usa source demo para ejemplos; el formulario guarda source local.
 
 Para fotos propias o con permiso de uso, guardá el archivo en `public/images/` y asigná `image: '/images/archivo.jpg'` al recuerdo. `MemoryArtwork` usa el título como alternativa textual y muestra la postal gráfica local si falla la imagen. Las postales CSS no son fotografías históricas. Documentá autoría y licencia de las fotos agregadas.
 
 ### Agregar datos de época o canciones
 
-En `src/eraData.ts`, agregá un `EraFact` a `eraFacts`, verificando el hecho y guardando `source`, `sourceName`, `dateLabel` y `scope`. El selector combina década y año; si no hay datos de ese año muestra un estado vacío.
+En el `content.ts` de tu epoca, agregá un `EraFact` a `facts`, verificando el hecho y guardando `source`, `sourceName`, `dateLabel` y `scope`. El selector combina década y año; si no hay datos de ese año muestra un estado vacío.
 
-Para música, agregá a `musicByDecade` un título, artista, año original, ID de pista de Spotify y enlace. Verificá que el embed corresponda a la grabación correcta y esté disponible. No se necesitan claves API ni archivos MP3. El catálogo inicial es local; solo la reproducción depende del proveedor externo.
+Para música, agregá a `music` un título, artista, año original, ID de pista de Spotify y enlace. Verificá que el embed corresponda a la grabación correcta y esté disponible. No se necesitan claves API ni archivos MP3. El catálogo inicial es local; solo la reproducción depende del proveedor externo.
 
 ## Organización
 
@@ -87,11 +89,11 @@ Para música, agregá a `musicByDecade` un título, artista, año original, ID d
 - `src/components/EraChrome.tsx`: marcos de época, íconos, barra de tareas y menú Inicio.
 - `src/components/MemoryForm.tsx`: diálogo nativo accesible y validación.
 - `src/components/Player.tsx`: integración de Spotify con carga explícita.
-- `src/data.ts`: relatos de demostración geolocalizados.
-- `src/eraData.ts`: canciones y datos culturales documentados.
+- `src/data.ts`: agrega recuerdos de las cuatro carpetas de epoca.
+- `src/eraData.ts`: agrega musica y datos culturales de las epocas.
 - `src/storage.ts`: persistencia y recuperación de datos inválidos.
 - `src/styles.css`: distribución a pantalla completa y temas con variables CSS.
-- `src/themes.ts` y `src/themes.css`: tipografías, materiales y detalles propios de cada década.
+- `src/eras/`: modulos por equipo; `registry.ts` los integra y `contracts.ts` define sus interfaces.
 
 ## Vercel
 
@@ -103,7 +105,7 @@ No se publica ni se hace push automáticamente. Cuando decidas desplegar, import
 - Si falla el guardado, el formulario conserva lo escrito. Los registros corruptos se omiten con un aviso.
 - Se necesita conexión para las teselas de OpenStreetMap y Spotify. Google Fonts tiene fuentes del sistema como alternativa. No hay backend ni APIs para obtener el dataset.
 - La cartografía representa la geografía actual. Se conserva su atribución; no hay descarga masiva, precarga ni caché offline de mapas.
-- No incluye login, chat, perfiles ni subida de archivos. Usá un navegador moderno compatible con `<dialog>`, `crypto.randomUUID` y almacenamiento local.
+- Incluye perfiles locales; no incluye login, chat ni subida de archivos. Usá un navegador moderno compatible con `<dialog>`, `crypto.randomUUID` y almacenamiento local.
 
 ### Controles compactos y reproductores
 

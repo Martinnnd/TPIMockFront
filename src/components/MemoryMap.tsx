@@ -12,7 +12,7 @@ function MapActions({ picking, onPick, selected, reset }: { picking: boolean; on
     observer.observe(map.getContainer());
     return () => observer.disconnect();
   }, [map]);
-  useEffect(() => { if (selected) map.setView([selected.lat, selected.lng], Math.max(map.getZoom(), 6), { animate: !matchMedia('(prefers-reduced-motion: reduce)').matches }); }, [selected, map]);
+  useEffect(() => { if (selected) map.setView([selected.lat, selected.lng], Math.max(map.getZoom(), 6), { animate: false }); }, [selected, map]);
   useEffect(() => { map.setView(center, 4); }, [reset, map]);
   useEffect(() => { map.getContainer().style.cursor = picking ? 'crosshair' : ''; }, [picking, map]);
   useEffect(() => {

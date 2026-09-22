@@ -6,7 +6,6 @@ import { loadMemories, saveMemories } from './storage';
 import MapModal from './components/MapModal';
 import Profile from './components/Profile';
 import SocialFeed from './components/SocialFeed';
-import './social.css';
 import Timeline from './components/Timeline';
 import MemoryMap, { type Point } from './components/MemoryMap';
 import MemoryForm from './components/MemoryForm';
@@ -14,7 +13,9 @@ import SidePanel from './components/SidePanel';
 import Player from './components/Player';
 import EraFacts from './components/EraFacts';
 import EraChrome, { EraIcon } from './components/EraChrome';
+import { availableDecades } from './eras/registry';
 import { eraThemes } from './themes';
+
 
 export default function App() {
   const mapExpandButton = useRef<HTMLButtonElement>(null);
@@ -22,7 +23,7 @@ export default function App() {
   const [following, setFollowing] = useState<string[]>([]);
   const creationOrigin = useRef(false);
   const [view, setView] = useState<'map' | 'feed' | 'profile'>('map');
-  const [period, setPeriod] = useState<Period>({ decade: 1990, year: null });
+  const [period, setPeriod] = useState<Period>(() => { const requested = Number(new URLSearchParams(window.location.search).get('era')); return { decade: availableDecades.find(year => year === requested) ?? 1990, year: null }; });
   const [category, setCategory] = useState<Category | 'Todas'>('Todas');
   const [local, setLocal] = useState<Memory[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -96,7 +97,7 @@ export default function App() {
     if (destination === 'map') setSelectedId(null);
   }
   const theme = eraThemes[period.decade];
-  return <div className={`app map-app view-${view} era-${period.decade} ${panelOpen ? 'stories-open' : ''} ${musicOpen ? 'music-open' : ''}`}>
+  return <div style={theme.tokens} className={`app map-app view-${view} era-${period.decade} ${panelOpen ? 'stories-open' : ''} ${musicOpen ? 'music-open' : ''}`}>
     <a className="skip-link" href="#explore">Saltar al mapa</a>
     {view !== 'profile' && <main id="explore" className="map-canvas"><MemoryMap memories={memories} selected={selected} onSelect={select} picking={picking} onPick={point => { setDraft(point); setPicking(false); }} draft={draft} onCancel={cancel}/>{view === 'feed' && <button ref={mapExpandButton} className="mini-map-expand" aria-label="Ampliar mapa" aria-haspopup="dialog" onClick={() => setMapExpanded(true)}><span>Ampliar mapa</span></button>}</main>}
     <EraChrome period={period} count={visibleMemories.length} panelOpen={panelOpen} musicOpen={musicOpen} onNavigate={navigate}/>
@@ -111,7 +112,7 @@ export default function App() {
       <span className="rail-footer">UNLaM<br/><strong>DEMO</strong></span>
     </nav>
     <header className="map-toolbar">
-      <div className="brand-card"><span className="brand-era-label" aria-hidden="true">{period.decade === 1970 ? 'EDICIÓN ESPECIAL / 1970–1979' : period.decade === 1980 ? 'EST. 1980 / VIDEO ARCHIVE' : period.decade === 1990 ? 'Mi escritorio' : 'Nostalgia Messenger'}</span><h1>{theme.brand}<span>.</span></h1><span>{theme.subtitle}</span></div>
+      <div className="brand-card"><span className="brand-era-label" aria-hidden="true">{theme.brandLabel}</span><h1>{theme.brand}<span>.</span></h1><span>{theme.subtitle}</span></div>
       <div className="compact-selectors"><Timeline period={period} onChange={changePeriod}/><details className="filters compact-menu"><summary>{category === 'Personales' ? 'Recuerdos personales' : category}<span aria-hidden="true">...</span><span className="sr-only">Elegir categoría</span></summary><div className="category-options" role="group" aria-label="Filtrar por categoría">{(['Todas', ...categories] as const).map(c => <button key={c} aria-pressed={category === c} className={category === c ? 'active' : ''} onClick={event => { setCategory(c); setSelectedId(null); event.currentTarget.closest('details')?.removeAttribute('open'); }}><span aria-hidden="true">{c === 'Todas' ? '✳' : symbols[c]}</span>{c === 'Personales' ? 'Recuerdos personales' : c}</button>)}</div></details></div>
       <button ref={addButton} className="primary-button add-button" onClick={startAdding} disabled={picking || !!draft}><Plus size={18}/><span>Agregar un recuerdo</span></button>
     </header>

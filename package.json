@@ -8,23 +8,27 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "test": "vitest run",
-    "test:e2e": "playwright test --workers=1"
+    "test:e2e": "playwright test --workers=1",
+    "check": "tsc -b && node scripts/check-architecture.mjs",
+    "test:era": "vitest run",
+    "test:e2e:ui": "playwright test tests/demo.spec.ts --workers=1"
   },
   "dependencies": {
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.468.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "leaflet": "^1.9.4",
-    "react-leaflet": "^5.0.0",
-    "lucide-react": "^0.468.0"
+    "react-leaflet": "^5.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/leaflet": "^1.9.18",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
-    "@types/leaflet": "^1.9.18",
     "@vitejs/plugin-react": "^4.7.0",
+    "postcss": "^8.5.28",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
-    "vitest": "^3.2.4",
-    "@playwright/test": "^1.56.0"
+    "vitest": "^3.2.4"
   }
 }
