@@ -6,7 +6,7 @@ import { isMemory, loadMemories, saveMemories } from './storage';
 const local: Memory = { ...initialMemories[0], id: 'local-1', source: 'local' };
 describe('Exploración temporal', () => {
   it('ofrece siete escenas por década en lugares distintos', () => {
-    for (const decade of [1970, 1980, 1990, 2000] as const) {
+    for (const decade of [1970, 1980, 1990, 2000, 2010] as const) {
       const memories = filterMemories(initialMemories, { decade, year: null }, 'Todas');
       expect(memories).toHaveLength(7);
       expect(new Set(memories.map(m => m.place)).size).toBe(7);
@@ -23,7 +23,7 @@ describe('Contenido de época', () => {
   it('separa datos culturales verificados de los pines y respeta década y año', () => {
     expect(factsForPeriod({ decade: 1990, year: 1995 }).map(f => f.id)).toEqual(['toystory']);
     expect(factsForPeriod({ decade: 1980, year: 1980 })).toEqual([]);
-    for (const decade of [1970, 1980, 1990, 2000] as const) {
+    for (const decade of [1970, 1980, 1990, 2000, 2010] as const) {
       expect(factsForPeriod({ decade, year: null })).toHaveLength(3);
       expect(musicByDecade[decade].every(t => t.year >= decade && t.year < decade + 10)).toBe(true);
     }
@@ -50,7 +50,7 @@ describe('Persistencia resistente a errores', () => {
   });
   it('valida límites y coordenadas', () => {
     expect(isMemory(local)).toBe(true);
-    for (const patch of [{ lat: NaN }, { lng: 181 }, { title: ' ' }, { year: 2009.5 }, { category: 'Otra' }, { year: 2010 }]) expect(isMemory({ ...local, ...patch })).toBe(false);
+    for (const patch of [{ lat: NaN }, { lng: 181 }, { title: ' ' }, { year: 2009.5 }, { category: 'Otra' }, { year: 2020 }]) expect(isMemory({ ...local, ...patch })).toBe(false);
   });
   it('guarda y vuelve a cargar sin perder datos', () => {
     let value: string | null = null;

@@ -1,0 +1,3 @@
+import { Camera, Plus, UserRound } from 'lucide-react';
+import type { ProfileIdentityProps } from '../contracts';
+export default function ProfileIdentity({onAdd}:ProfileIdentityProps){return <><div className="profile-network-cover"><span>Todos tenemos una historia.</span><small>Esta es la tuya.</small><Camera size={22}/></div><div className="profile-portrait" aria-hidden="true"><UserRound size={62}/></div><div className="personal-identity"><span className="eyebrow">MI BIOGRAFÍA</span><h2>Mi perfil</h2><p>Visitante</p><small>Fotos mentales, lugares favoritos y recuerdos para compartir.</small></div><button className="primary-button" onClick={onAdd}><Plus size={16}/>Publicar un recuerdo</button></>;}

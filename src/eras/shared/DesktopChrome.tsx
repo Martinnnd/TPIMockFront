@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { FolderOpen, Map, Music2 } from 'lucide-react';
+import { FolderOpen, Map, Music2, Newspaper } from 'lucide-react';
 import type { ChromeProps, Destination, EraModule, EraTheme } from '../contracts';
 
 interface Props extends ChromeProps { theme: EraTheme; icons: EraModule['icons']; startLabel: string; storiesLabel: string; menuTitle: string }
-export default function DesktopChrome({ period, count, panelOpen, musicOpen, onNavigate, theme, icons, startLabel, storiesLabel, menuTitle }: Props) {
+export default function DesktopChrome({ view = 'map', period, count, panelOpen, musicOpen, onNavigate, theme, icons, startLabel, storiesLabel, menuTitle }: Props) {
   const menu = useRef<HTMLDivElement>(null);
   useEffect(() => { menu.current?.hidePopover(); }, [period.decade]);
   const periodLabel = period.year ?? `${period.decade}–${period.decade + 9}`;
@@ -13,9 +13,10 @@ export default function DesktopChrome({ period, count, panelOpen, musicOpen, onN
     <div className="era-shell-top"><span className="shell-caption"><MapIcon size={14}/>{theme.windowTitle}</span><div className="shell-actions"><button onClick={() => navigate('facts')} aria-label="Abrir datos desde la barra de título" title="Datos de época">?</button><button onClick={() => navigate('map')} aria-label="Minimizar paneles y ver el mapa" title="Minimizar paneles">_</button></div></div>
     <footer className="system-taskbar" aria-label="Barra de tareas">
       <button className="start-button" popoverTarget="era-start-menu"><span className="system-logo" aria-hidden="true"><i/><i/><i/><i/></span>{startLabel}</button><span className="taskbar-separator"/>
-      <button className={!panelOpen ? 'task-active' : ''} onClick={() => navigate('map')}><Map size={14}/>Argentina</button>
+      <button className={view === 'map' && !panelOpen ? 'task-active' : ''} onClick={() => navigate('map')}><Map size={14}/>Argentina</button>
       <button className={panelOpen ? 'task-active' : ''} onClick={() => navigate('stories')}><FolderOpen size={15}/>{storiesLabel}</button>
       <button className={musicOpen ? 'task-active' : ''} onClick={() => navigate('music')}><Music2 size={14}/>Mi música</button>
+      {view === 'feed' && <button className="task-active" onClick={() => navigate('map')} aria-label="Minimizar ventana del feed desde la barra de tareas"><Newspaper size={14}/>{period.decade === 2000 ? 'Mis espacios' : 'Feed'}</button>}
       <span className="system-tray"><span className="connection-dot"/>{count} recuerdos<span className="tray-year">{periodLabel}</span></span>
     </footer>
     <div ref={menu} popover="auto" id="era-start-menu" className={`start-menu start-menu-${period.decade}`}>

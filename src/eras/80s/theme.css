@@ -567,3 +567,46 @@
 .app.era-1980 .device-1980 .music-compact { border:2px ridge #a7a0a5; border-radius:4px; background:linear-gradient(#302731,#17131d); }
 
 @media(max-width:899px) { .app.era-1980 .music-card:not(.expanded) .device-illustration { display:none; } }
+
+/* Arcade cabinet finishes: illuminated edges, grid and score-board panels. */
+.era-1980:is(.view-feed,.view-profile) { background:linear-gradient(#110b24e8,#150d2dd9),repeating-linear-gradient(0deg,transparent 0 39px,#853ea4 40px),repeating-linear-gradient(90deg,#130c26 0 39px,#38a0ab 40px); }
+.era-1980 .navigation-rail { background:linear-gradient(90deg,#10091c,#261039 80%,#10091c); border-right:2px solid #f647d4; box-shadow:3px 0 14px #f432a829; }
+.era-1980 .navigation-rail :is(.rail-active,button[aria-expanded=true]) { background:linear-gradient(135deg,#56216a,#20132c); border:1px solid #ff70dd; box-shadow:inset 0 0 12px #ee39bd40,0 0 8px #fa4ec74d; }
+.era-1980 .brand-card { background:linear-gradient(140deg,#220b32,#0e1025); border:2px solid #ff4fcf; box-shadow:inset 0 0 0 3px #170d29,inset 0 0 0 4px #49e9ef,0 0 17px #ff36cc3d; padding:15px 20px; }
+.era-1980 .brand-card h1 { text-shadow:2px 2px #f02db7,-1px -1px #57f7ff,0 0 14px #e939ad; }
+.era-1980 .timeline,.era-1980 .map-period { box-shadow:3px 3px 0 #ee38c340,0 0 10px #38e5ea22; }
+.era-1980 .social-stream { border:1px solid #7943a3; padding:9px; background:linear-gradient(135deg,#110d22ed,#1d1035e8); box-shadow:inset 0 0 0 3px #10091f,0 0 15px #b338cd22; }
+.era-1980 .feed-heading { padding:13px; border:1px solid #f748d0; background:linear-gradient(110deg,#43105a,#17132d); box-shadow:inset 0 -2px #59f8ff; }
+.era-1980 .feed-heading h2 { color:#71fcff; font:25px 'Audiowide',sans-serif; text-transform:uppercase; text-shadow:2px 2px #d824aa; }
+.era-1980 .arcade-player-label { display:block; font:11px 'VT323',monospace; letter-spacing:3px; color:#ffe7a1; margin-bottom:5px; text-shadow:none; }
+.era-1980 .feed-post { background:linear-gradient(135deg,#251238,#120f24); border:1px solid #75418f; border-left:3px solid #52ecf6; margin:14px 0; padding:18px; box-shadow:4px 4px 0 #0004; }
+.era-1980 .feed-post>header { border-bottom:1px solid #693078; padding-bottom:11px; }
+.era-1980 .social-avatar { border-radius:3px; border:2px solid #5cecf5; background:linear-gradient(135deg,#721e83,#2a153e); color:#fff0fa; box-shadow:3px 3px #fa49ca; }
+.era-1980 .feed-post h3 { color:#f6ceef; }
+.era-1980 .feed-post p { color:#d7c9e8; }
+.era-1980 .feed-tabs button,.era-1980 .follow-button { box-shadow:2px 2px #ed40ba80; border:1px solid #cd67d6; }
+.era-1980 .feed-sidebar>section { background:linear-gradient(#29123e,#140f25); border:1px solid #bf54d0; border-top:3px solid #50edee; box-shadow:4px 4px #ec3db431; }
+.era-1980 .feed-sidebar h3 { color:#70f2f4; text-shadow:1px 1px #b02593; }
+.era-1980 .personal-header { background:linear-gradient(120deg,#301444,#100e26); border:2px solid #ec4ecd; box-shadow:4px 4px #50eced55; }
+.era-1980 .vhs-status { background:linear-gradient(#201032,#0e091b); border-top:2px solid #5ff7f9; box-shadow:0 -3px 14px #ec39d033; }
+@media(max-width:899px) { .era-1980 .brand-card { padding:8px 10px; } .era-1980 .feed-post { padding:12px 8px; } .era-1980 .feed-heading { padding:8px; } .era-1980 .feed-heading h2 { font-size:18px; } }
+
+/* Player selection / character dossier. */
+.era-1980 .personal-header { grid-template-columns:160px 1fr auto; border:2px solid #f05acb; padding:22px; gap:24px; background:radial-gradient(ellipse at 8% 60%,#73226455,transparent 40%),linear-gradient(130deg,#241334,#0e1025); box-shadow:inset 0 0 0 5px #100d22,inset 0 0 0 6px #66418d,5px 5px #3be8e54d; }
+.era-1980 .profile-game-banner { grid-column:1/-1; display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:14px; border-bottom:1px solid #8947a9; font:24px 'VT323',monospace; letter-spacing:3px; color:#fff29b; text-shadow:2px 2px #a927a6; }
+.era-1980 .profile-game-banner span:last-child { font-size:14px; color:#6bf8f2; letter-spacing:1px; }
+.era-1980 .profile-portrait { width:156px; height:176px; border-radius:0; border:2px solid var(--character-color,#5ff4ef); color:var(--character-color,#5ff4ef); background:linear-gradient(transparent,#3b1b6140),repeating-linear-gradient(0deg,#161027 0 3px,#211536 4px); display:flex; flex-direction:column; justify-content:center; gap:10px; box-shadow:0 0 16px #49dddc33,inset 0 0 18px #000a; }
+.era-1980 .profile-portrait svg { width:75px; height:100px; filter:drop-shadow(4px 4px #b72683); }
+.era-1980 .profile-portrait span { font:16px 'VT323',monospace; text-transform:uppercase; letter-spacing:2px; }
+.era-1980 .personal-identity h2 { font:32px 'Audiowide',sans-serif; color:#f5e5fa; text-shadow:2px 2px #bc35bc; }
+.era-1980 .arcade-ready { color:#8cfa89; font:18px 'VT323',monospace; }
+.era-1980 .character-picker { display:flex; flex-wrap:wrap; gap:7px; margin:14px 0; }
+.era-1980 .character-picker button { font:15px 'VT323',monospace; padding:7px 10px; color:#cbb7e0; background:#1b1130; border:1px solid #784e97; }
+.era-1980 .character-picker button[aria-pressed=true] { color:#0f1527; background:#63f0e9; border-color:#b1ffff; box-shadow:3px 3px #e744bd; }
+.era-1980 .personal-counts { gap:12px; padding:18px 0 0; border-top:1px solid #713b8e; }
+.era-1980 .personal-counts>div { background:#100d22; border:1px solid #693b87; padding:14px 5px; box-shadow:inset 0 2px #b844bf; }
+.era-1980 .personal-counts dd { font:36px 'VT323',monospace; color:#79fff3; text-shadow:0 0 7px #48ffed50; }
+.era-1980 .personal-counts dt { font:14px 'VT323',monospace; text-transform:uppercase; letter-spacing:1px; }
+.era-1980 .personal-map { border:3px solid #7f48a0; box-shadow:0 0 0 2px #120e27,0 0 16px #ee38db22; }
+.era-1980 .personal-empty { background:linear-gradient(130deg,#241336,#131127); border:1px solid #80489c; }
+@media(max-width:899px) { .era-1980 .personal-header { grid-template-columns:85px 1fr; padding:15px; gap:13px; } .era-1980 .profile-portrait { width:80px; height:123px; } .era-1980 .profile-portrait svg { width:46px; height:65px; } .era-1980 .profile-portrait span { font-size:11px; letter-spacing:0; } .era-1980 .profile-game-banner { font-size:20px; letter-spacing:1px; } .era-1980 .profile-game-banner span:last-child { font-size:10px; } .era-1980 .personal-identity h2 { font-size:23px; } .era-1980 .character-picker { gap:4px; margin:8px 0; } .era-1980 .character-picker button { font-size:12px; padding:4px; } .era-1980 .personal-counts { gap:4px; } .era-1980 .personal-counts dt { font-size:11px; letter-spacing:0; } }

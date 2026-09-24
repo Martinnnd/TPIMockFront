@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, Heart, MapPin, MessageCircle } from 'lucide-react';
-import type { Memory } from '../types';
+import FeedWindowChrome from '../eras/shared/FeedWindowChrome';
+import type { Decade, Memory } from '../types';
 
-export default function SocialFeed({ memories, selected, onSelect, onMap, onAdd, following, onFollow }: { following: string[]; onFollow: (author: string) => void; memories: Memory[]; selected: Memory | null; onSelect: (memory: Memory | null) => void; onMap: (memory: Memory) => void; onAdd: () => void }) {
+export default function SocialFeed({ decade, onClose, memories, selected, onSelect, onMap, onAdd, following, onFollow }: { decade: Decade; onClose: () => void; following: string[]; onFollow: (author: string) => void; memories: Memory[]; selected: Memory | null; onSelect: (memory: Memory | null) => void; onMap: (memory: Memory) => void; onAdd: () => void }) {
+  const [maximized, setMaximized] = useState(false);
+  useEffect(() => setMaximized(false), [decade]);
+  const desktop = decade === 1990 || decade === 2000;
   const [likes, setLikes] = useState<string[]>([]);
   const [comments, setComments] = useState<Record<string, string[]>>({});
   const [tab, setTab] = useState<'all' | 'following'>('all');
@@ -14,9 +18,10 @@ export default function SocialFeed({ memories, selected, onSelect, onMap, onAdd,
   const posts = tab === 'following' ? memories.filter(m => following.includes(m.author)) : memories;
   function follow(author: string) { onFollow(author); }
   function open(memory: Memory | null) { setComment(''); onSelect(memory); }
-  return <section className="social-layout" aria-label="Feed de recuerdos">
+  return <section className={`social-layout ${desktop ? 'desktop-feed' : ''} ${desktop && maximized ? 'feed-maximized' : ''}`} aria-label="Feed de recuerdos">
     <div className="social-stream" ref={stream}>
-      <header className="feed-heading"><h2>Feed</h2><div className="feed-tabs" role="group" aria-label="Publicaciones"><button aria-pressed={tab === 'all'} onClick={() => { setTab('all'); open(null); }}>Para vos</button><button aria-pressed={tab === 'following'} onClick={() => { setTab('following'); open(null); }}>Seguidos</button></div></header>
+      {desktop && <FeedWindowChrome decade={decade} maximized={maximized} canBack={!!selected} onBack={() => open(null)} onClose={onClose} onMaximize={() => setMaximized(v => !v)} onAdd={onAdd}/>}
+      <header className="feed-heading"><h2>{decade === 1980 && <span className="arcade-player-label" aria-hidden="true">PLAYER 01</span>}Feed</h2><div className="feed-tabs" role="group" aria-label="Publicaciones"><button aria-pressed={tab === 'all'} onClick={() => { setTab('all'); open(null); }}>Para vos</button><button aria-pressed={tab === 'following'} onClick={() => { setTab('following'); open(null); }}>Seguidos</button></div></header>
       {selected && <button className="feed-back" onClick={() => open(null)}><ArrowLeft size={17}/>Volver a feed</button>}
       <div className="feed-posts">
         {(selected ? [selected] : posts).map(memory => <article className="feed-post" key={memory.id}>

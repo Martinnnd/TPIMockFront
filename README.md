@@ -1,4 +1,4 @@
-> **Trabajo en equipo:** el proyecto ahora se organiza por parejas en `src/eras/70s`, `80s`, `90s` y `2000s`. Empezar por [la guia de arquitectura y colaboracion](docs/TRABAJO_EN_EQUIPO.md). Los archivos `data.ts`, `eraData.ts` y `themes.ts` son agregadores; el contenido y los temas se editan dentro de cada epoca.
+> **Trabajo en equipo:** el proyecto ahora se organiza por parejas en `src/eras/70s`, `80s`, `90s`, `2000s` y `2010s`. Empezar por [la guia de arquitectura y colaboracion](docs/TRABAJO_EN_EQUIPO.md). Los archivos `data.ts`, `eraData.ts` y `themes.ts` son agregadores; el contenido y los temas se editan dentro de cada epoca.
 
 # Nostalgia
 
@@ -89,7 +89,7 @@ Para música, agregá a `music` un título, artista, año original, ID de pista 
 - `src/components/EraChrome.tsx`: marcos de época, íconos, barra de tareas y menú Inicio.
 - `src/components/MemoryForm.tsx`: diálogo nativo accesible y validación.
 - `src/components/Player.tsx`: integración de Spotify con carga explícita.
-- `src/data.ts`: agrega recuerdos de las cuatro carpetas de epoca.
+- `src/data.ts`: agrega recuerdos de las cinco carpetas de epoca.
 - `src/eraData.ts`: agrega musica y datos culturales de las epocas.
 - `src/storage.ts`: persistencia y recuperación de datos inválidos.
 - `src/styles.css`: distribución a pantalla completa y temas con variables CSS.
@@ -119,7 +119,7 @@ La década 1970–1979 agrega una identidad de revista y periódico: titulares s
 
 ### Feed y perfil
 
-La navegación incluye Feed y Perfil. El mapa sigue siendo la vista inicial; en las vistas sociales se reduce a un mapa lateral interactivo. El feed comparte los filtros de época, año y categoría, y adapta su diseño a los cuatro temas. Cada publicación abre su relato completo y permite volver a su ubicación en el mapa. Para vos muestra los recuerdos disponibles; Seguidos filtra los autores seleccionados.
+La navegación incluye Feed y Perfil. El mapa sigue siendo la vista inicial; en las vistas sociales se reduce a un mapa lateral interactivo. El feed comparte los filtros de época, año y categoría, y adapta su diseño a los cinco temas. Cada publicación abre su relato completo y permite volver a su ubicación en el mapa. Para vos muestra los recuerdos disponibles; Seguidos filtra los autores seleccionados.
 
 El perfil reúne los recuerdos locales de la época elegida y muestra el total guardado. No hay autenticación todavía. Seguidos, me gusta y comentarios funcionan durante la sesión como interacciones de demostración, sin enviarse a un servidor. Los recuerdos publicados mantienen la persistencia local existente.
 
@@ -140,3 +140,8 @@ El token publico es visible en el navegador por dise?o. Usar permisos publicos y
 Verificacion: npm run check, npm test, npm run build. La suite actual tests/demo.spec.ts comprueba el recorrido 2D sin token; la carga real de Mapbox requiere token y conexion.
 
 Referencia: https://docs.mapbox.com/mapbox-gl-js/guides/globe/
+
+
+### Nueva década: 2010–2019
+
+Abrir `http://localhost:5173/?era=2010`. Estética de biografía social, perfil con portada e iPhone 4 como reproductor. Incluye siete relatos ficticios, tres datos con fuentes de Apple/NASA/Disney y dos canciones en Spotify. Formularios y almacenamiento admiten años hasta 2019. Ver [guía del equipo 2010s](src/eras/2010s/README.md).

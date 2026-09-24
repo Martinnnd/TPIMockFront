@@ -1,13 +1,13 @@
-import { MapPin, Plus, UserRound, X } from 'lucide-react';
+import { MapPin, X } from 'lucide-react';
+import { eraRegistry } from '../eras/registry';
 import MemoryMap from './MemoryMap';
 import type { Memory, Period } from '../types';
 
 export default function Profile({ memories, allMemories, following, period, selected, onSelect, onAdd }: { memories: Memory[]; allMemories: Memory[]; following: string[]; period: Period; selected: Memory | null; onSelect: (memory: Memory | null) => void; onAdd: () => void }) {
+  const Identity = eraRegistry[period.decade].ProfileIdentity;
   return <main id="explore" className="personal-profile" aria-label="Mi perfil">
     <header className="personal-header">
-      <div className="profile-portrait" aria-hidden="true"><UserRound size={44}/></div>
-      <div className="personal-identity"><span className="eyebrow">MI ARCHIVO PERSONAL</span><h2>Mi perfil</h2><p>Los lugares cambian. Tus historias quedan.</p><small className="profile-note">Visitante · recuerdos guardados en este navegador</small></div>
-      <button className="primary-button" onClick={onAdd}><Plus size={18}/>Crear un recuerdo</button>
+      <Identity onAdd={onAdd}/>
       <dl className="personal-counts"><div><dt>Recuerdos</dt><dd>{allMemories.length}</dd></div><div><dt>Seguidores</dt><dd>0</dd></div><div><dt>Seguidos</dt><dd>{following.length}</dd></div><div><dt>Lugares</dt><dd>{new Set(allMemories.map(m => `${m.lat},${m.lng}`)).size}</dd></div></dl>
       <small className="personal-demo-note">Perfil local sin inicio de sesión. Los seguidos corresponden a esta sesión; todavía no recibís seguidores.</small>
     </header>

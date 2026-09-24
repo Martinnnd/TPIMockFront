@@ -9,6 +9,7 @@ export interface EraTheme {
   tokens: CSSProperties & Record<`--${string}`, string>;
 }
 export interface ChromeProps {
+  view?: 'map' | 'feed' | 'profile';
   period: Period; count: number; panelOpen: boolean; musicOpen: boolean;
   onNavigate: (destination: Destination) => void;
 }
@@ -26,7 +27,9 @@ export interface EraContent {
   memories: Memory[]; facts: EraFact[]; music: [MusicTrack, ...MusicTrack[]];
   introduction: { label: string; description: string };
 }
+export interface ProfileIdentityProps { onAdd: () => void }
 export interface EraModule {
+  ProfileIdentity: ComponentType<ProfileIdentityProps>;
   theme: EraTheme; icons: Record<Destination, LucideIcon>;
   Chrome: ComponentType<ChromeProps>; Player: ComponentType<PlayerViewProps>; content: EraContent;
 }

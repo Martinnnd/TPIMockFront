@@ -1,4 +1,4 @@
-﻿.app:is(.view-feed,.view-profile) .map-canvas { inset:180px auto auto 94px; width:265px; height:240px; border:2px solid var(--line); box-shadow:var(--shadow); z-index:360; }
+.app:is(.view-feed,.view-profile) .map-canvas { inset:180px auto auto 94px; width:265px; height:240px; border:2px solid var(--line); box-shadow:var(--shadow); z-index:360; }
 .app:is(.view-feed,.view-profile) .map-period { top:435px; max-width:265px; flex-wrap:wrap; }
 .app:is(.view-feed,.view-profile) .music-card { width:265px; bottom:60px; }
 .app:is(.view-feed,.view-profile) .music-card.expanded { z-index:580; width:350px; }
@@ -157,3 +157,36 @@
 .app .expanded-map-dialog .map-reset span { display:inline; }
 @media(max-width:899px) { .expanded-map-dialog { width:calc(100vw - 20px); height:calc(100dvh - 40px); } .expanded-map-dialog>header { padding:12px; } .expanded-map-dialog h2 { font-size:16px; } .mini-map-expand { padding:4px; } .mini-map-expand span { font-size:8px; padding:4px; } }
 .app .expanded-map-dialog .map-reset { bottom:82px; }
+
+/* Shared window geometry. Visual treatments remain in each era folder. */
+.feed-window-title,.feed-window-title>span,.feed-window-actions,.feed-window-toolbar,.feed-address,.messenger-welcome { display:flex; align-items:center; }
+.feed-window-title { justify-content:space-between; gap:8px; padding:5px 7px; }
+.feed-window-title>span { gap:6px; min-width:0; }
+.feed-window-title strong { font-size:12px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.feed-window-actions { gap:3px; flex-shrink:0; }
+.feed-window-actions button { display:grid; place-items:center; width:23px; height:22px; padding:0; }
+.feed-window-toolbar { gap:5px; padding:7px; flex-wrap:wrap; }
+.feed-window-toolbar button { display:flex; align-items:center; gap:5px; padding:5px 8px; font-size:11px; }
+.feed-window-toolbar button:disabled { opacity:.45; cursor:default; }
+.feed-address { gap:8px; padding:4px 9px 8px; font-size:10px; }
+.feed-address-path { flex:1; min-width:0; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; padding:5px; }
+.messenger-welcome { padding:16px; gap:12px; }
+.messenger-welcome strong { font-size:16px; }
+.messenger-welcome small { display:block; font-size:10px; margin-top:4px; }
+.messenger-user { position:relative; padding:10px; border-radius:8px; }
+.messenger-user i { position:absolute; right:-3px; bottom:0; width:10px; height:10px; border-radius:50%; }
+.messenger-era { margin-left:auto; font:bold italic 22px 'Trebuchet MS',sans-serif; }
+.desktop-feed.feed-maximized { left:94px; z-index:540; }
+.desktop-feed.feed-maximized .feed-sidebar { display:none; }
+.desktop-feed.feed-maximized { grid-template-columns:1fr; }
+@media(max-width:899px) {
+ .desktop-feed.feed-maximized { left:12px; }
+ .feed-window-title strong { font-size:10px; }
+ .feed-window-toolbar { gap:3px; padding:4px; }
+ .feed-window-toolbar button { font-size:10px; padding:4px; }
+ .feed-address { padding:4px 6px; }
+ .messenger-welcome { padding:9px; }
+ .messenger-welcome strong { font-size:12px; }
+ .messenger-era { display:none; }
+ .feed-window-actions button { width:22px; }
+}

@@ -703,3 +703,67 @@
 .app.era-2000 .device-2000 .music-buttons::after { content:'▶ Ⅱ'; position:absolute; bottom:9px; left:43%; font:9px Arial,sans-serif; color:#738294; pointer-events:none; }
 .app.era-2000 .device-2000 .listen-button { box-shadow:inset 0 1px 2px white,0 1px 2px #7b879755; }
 @media(max-width:899px) { .app.era-2000 .device-2000 .music-buttons::after { display:none; } }
+
+/* Luna desktop and a Messenger / Internet Explorer application window. */
+.era-2000:is(.view-feed,.view-profile) { background:radial-gradient(ellipse at 80% 112%,#357320 0 24%,#6ba43c 25% 31%,transparent 32%),radial-gradient(ellipse at 25% 115%,#75a945 0 39%,transparent 40%),radial-gradient(ellipse at 70% 20%,#ffffffa8,transparent 27%),linear-gradient(#367cd4,#87c9f6 64%,#a7d6ee); }
+.era-2000 .navigation-rail { background:linear-gradient(90deg,#d8eafaed,#94bde8e8); border-right:1px solid #467fb9; box-shadow:inset -1px 0 #f5fbff; }
+.era-2000 .navigation-rail button>svg { filter:drop-shadow(1px 2px 1px #36609266); }
+.era-2000 .navigation-rail .rail-active { background:linear-gradient(#f5faff,#c3dafa); box-shadow:inset 0 1px #fff,0 2px 4px #2b579750; border-color:#6b9fd7; }
+.era-2000 .brand-card { background:linear-gradient(#fff 0%,#e9f4ff 55%,#d4e6fb); border:1px solid #568bcd; box-shadow:inset 0 1px #fff,0 4px 12px #20467550; }
+.era-2000 .era-shell-top { background:linear-gradient(#4c9bf6 0%,#1666d9 15%,#0752c6 75%,#06439d); box-shadow:inset 0 1px #95c3ff; }
+.era-2000 .desktop-feed { gap:16px; grid-template-columns:minmax(0,1fr) 235px; }
+.era-2000 .desktop-feed .social-stream { background:#ece9d8; border:3px solid #1762cb; border-top:0; border-radius:9px 9px 0 0; padding:0 0 5px; box-shadow:3px 6px 18px #133a685e; scrollbar-color:#adc8ea #f2f6ff; }
+.era-2000 .feed-window-title { background:linear-gradient(#60a6ff,#196aeb 14%,#0753c5 75%,#216de1); padding:6px; border-radius:6px 6px 0 0; color:white; text-shadow:1px 1px #174688; }
+.era-2000 .feed-window-actions button { color:white; border:1px solid #e2efff; border-radius:3px; background:linear-gradient(135deg,#81b5f8,#1d65d0 70%); box-shadow:inset 0 0 2px #fff; }
+.era-2000 .feed-window-actions button:last-child { background:linear-gradient(135deg,#f6aa88,#d84b2e 70%); }
+.era-2000 .feed-window-toolbar { background:#ece9d8; border-bottom:1px solid #c4c1b3; }
+.era-2000 .feed-window-toolbar button { background:linear-gradient(#fff,#f0eedf); color:#283d55; border:1px solid #bebbaa; border-radius:3px; box-shadow:inset 0 1px #fff; }
+.era-2000 .feed-window-toolbar button svg { color:#419443; }
+.era-2000 .feed-address { padding-top:6px; background:#ece9d8; color:#424b55; }
+.era-2000 .feed-address-path { background:#fff; border:1px solid #7f9db9; color:#233c58; }
+.era-2000 .messenger-welcome { background:linear-gradient(120deg,#fff,#dfedff 55%,#bad8f7); border-block:1px solid #b9cfe7; color:#225586; }
+.era-2000 .messenger-user { background:linear-gradient(#b5e887,#479b25); border:2px solid white; box-shadow:0 0 0 1px #8fb179; color:white; }
+.era-2000 .messenger-user i { background:#65bb30; border:2px solid white; }
+.era-2000 .desktop-feed .feed-heading { border:0; border-bottom:1px solid #aac5df; border-radius:0; padding:10px 12px; background:linear-gradient(#f8fcff,#e0edfb); box-shadow:none; }
+.era-2000 .feed-heading h2 { font:bold 17px Tahoma,sans-serif; }
+.era-2000 .feed-tabs button { padding:6px 12px; border-radius:3px; }
+.era-2000 .feed-posts { background:#fff; margin:7px; border:1px solid #a5b9cf; }
+.era-2000 .feed-post { border:0; border-bottom:1px solid #c8dced; border-radius:0; margin:0; padding:17px; box-shadow:none; background:linear-gradient(#fff,#f6faff); }
+.era-2000 .feed-post>header { border-bottom:1px solid #dbe7f3; padding-bottom:9px; }
+.era-2000 .post-content h3 { font-size:19px; }
+.era-2000 .post-content p { font:13px/1.7 Tahoma,sans-serif; }
+.era-2000 .feed-sidebar>section { background:linear-gradient(#f5faff,#d6e8fc); border:1px solid #347bc8; border-radius:7px 7px 0 0; padding:14px; box-shadow:3px 5px 10px #18497940; }
+.era-2000 .feed-sidebar h3 { font:bold 12px Tahoma,sans-serif; background:linear-gradient(#5aa6f5,#1764ba); color:white; text-shadow:1px 1px #144574; margin:-14px -14px 14px; padding:8px 10px; border-radius:6px 6px 0 0; }
+.era-2000 .feed-sidebar .eyebrow { display:none; }
+.era-2000 .suggested-person { border-bottom:1px solid #b6d0e9; }
+.era-2000 .system-taskbar { background:linear-gradient(#4da0ff 0%,#196ce7 13%,#195bcc 80%,#1448a6); border-top:1px solid #0e4daa; box-shadow:inset 0 1px #91caff; }
+.era-2000 .system-taskbar .start-button { background:linear-gradient(#81c467,#439e3d 20%,#307c2c 80%,#50a63d); border-radius:0 12px 12px 0; text-shadow:1px 2px #225a1e; box-shadow:inset 0 2px 2px #b1dc99; font-style:italic; }
+@media(max-width:1200px) { .era-2000 .desktop-feed { grid-template-columns:1fr; } }
+@media(max-width:899px) { .era-2000 .feed-post { padding:10px; } .era-2000 .feed-posts { margin:4px; } }
+
+/* Windows Live Messenger: white glass, sky blue and the green display tile. */
+.era-2000 .personal-header { grid-template-columns:150px 1fr auto; border:1px solid #8cbbd0; border-top:1px solid #d4f2ff; border-radius:13px; padding:22px 32px 24px; gap:22px; background:radial-gradient(ellipse at 10% 0%,#72d6ee70,transparent 38%),linear-gradient(#d9f5ff 0%,#ffffff 45%,#fbfdff); box-shadow:inset 0 1px #fff,0 8px 26px #28538250; }
+.era-2000 .profile-live-title { grid-column:1/-1; display:flex; align-items:center; gap:9px; color:#357389; font:15px 'Segoe UI',Tahoma,sans-serif; }
+.era-2000 .profile-live-title strong { color:#31474e; }
+.era-2000 .profile-live-heading { grid-column:1/-1; font:24px 'Segoe UI',Tahoma,sans-serif; color:#4b6e7b; padding:5px 0 10px; letter-spacing:-.6px; }
+.era-2000 .profile-live-heading strong { display:block; font-weight:400; font-size:32px; color:#243f4a; margin-top:5px; }
+.era-2000 .profile-portrait { position:relative; width:134px; height:144px; border:2px solid #91ad7f; border-radius:15px; padding:12px; background:linear-gradient(135deg,#e4f3d7,#9bce65 45%,#75b443); box-shadow:inset 0 0 0 5px #f1f8ea,inset 0 0 0 7px #adbd9d,3px 5px 8px #376c2c30; }
+.era-2000 .messenger-silhouette { display:block; position:relative; width:95px; height:109px; background:linear-gradient(150deg,#f3f8f9,#c6d5d8 55%,#f4f8f8); border:1px solid #9aadb1; border-radius:4px; overflow:hidden; }
+.era-2000 .messenger-silhouette i { position:absolute; width:37px; height:39px; left:28px; top:12px; border-radius:50%; background:radial-gradient(circle at 35% 25%,#f1f9fa,#a2b7be 50%,#64828c); box-shadow:1px 2px 3px #4d666780; }
+.era-2000 .messenger-silhouette b { position:absolute; width:62px; height:55px; left:16px; top:48px; border-radius:45% 45% 22% 22%; background:linear-gradient(100deg,#77949c,#d8e8ea 43%,#8faab2 70%,#52727e); box-shadow:1px 2px 3px #46646b; }
+.era-2000 .profile-online-dot { position:absolute; right:0; bottom:0; width:18px; height:18px; border-radius:50%; border:3px solid #fff; background:linear-gradient(#a8e663,#58a824); box-shadow:0 1px 3px #42672a; }
+.era-2000 .personal-identity h2 { font:normal 30px 'Segoe UI',Tahoma,sans-serif; color:#264d63; }
+.era-2000 .profile-screen-name { font:bold 16px Tahoma,sans-serif; color:#264861; }
+.era-2000 .profile-availability { font:11px Tahoma,sans-serif; color:#438525; margin-left:7px; white-space:nowrap; }
+.era-2000 .profile-status-message { background:#fff; border:1px solid #b7d1df; box-shadow:inset 0 1px 3px #52788a12; padding:10px 12px; margin:12px 0 9px; color:#779097; font:italic 13px Tahoma,sans-serif; }
+.era-2000 .personal-header>.primary-button { background:linear-gradient(#fff,#ddecf4); color:#255d7a; border:1px solid #95b6c9; box-shadow:inset 0 1px #fff,0 2px 4px #46667a22; }
+.era-2000 .personal-counts { border-top:1px solid #d4e8f1; padding-top:20px; }
+.era-2000 .personal-counts dd { font:normal 32px 'Segoe UI',Tahoma,sans-serif; color:#3680a1; }
+.era-2000 .personal-counts dt { color:#63808c; }
+.era-2000 .personal-counts>div { border-color:#e0edf2; }
+.era-2000 .personal-demo-note { color:#738c95; }
+.era-2000 .personal-section-title { background:linear-gradient(#f8fcff,#d9eef8); border:1px solid #9cc1d6; border-radius:7px 7px 0 0; padding:12px 18px; margin-bottom:0; }
+.era-2000 .personal-section-title h3 { font:normal 21px 'Segoe UI',Tahoma,sans-serif; }
+.era-2000 .personal-map { border:3px solid #d7eaf5; border-radius:0 0 8px 8px; box-shadow:0 3px 12px #2d659244; }
+.era-2000 .personal-empty { background:linear-gradient(#fff,#eaf7ff); border:1px solid #b4d5e7; border-radius:0 0 8px 8px; }
+@media(max-width:899px) { .era-2000 .personal-header { grid-template-columns:80px 1fr; padding:16px; gap:14px; } .era-2000 .profile-live-title { font-size:12px; } .era-2000 .profile-live-heading { font-size:19px; } .era-2000 .profile-live-heading strong { font-size:24px; } .era-2000 .profile-portrait { width:76px; height:91px; padding:8px; border-radius:10px; } .era-2000 .messenger-silhouette { width:56px; height:68px; } .era-2000 .messenger-silhouette i { width:23px; height:24px; left:15px; top:7px; } .era-2000 .messenger-silhouette b { width:39px; height:35px; top:30px; left:7px; } .era-2000 .personal-identity h2 { font-size:24px; } .era-2000 .profile-screen-name { font-size:13px; } .era-2000 .profile-availability { display:block; margin:5px 0; font-size:10px; } .era-2000 .profile-status-message { padding:7px; font-size:10px; } .era-2000 .profile-live-heading { letter-spacing:0; } }

@@ -4,7 +4,7 @@ export function isMemory(value: unknown): value is Memory {
   if (!value || typeof value !== 'object') return false;
   const m = value as Record<string, unknown>;
   return ['id', 'title', 'description', 'place', 'author'].every(k => typeof m[k] === 'string' && (m[k] as string).trim().length > 0 && (m[k] as string).length <= 3000)
-    && typeof m.year === 'number' && Number.isInteger(m.year) && m.year >= 1970 && m.year <= 2009
+    && typeof m.year === 'number' && Number.isInteger(m.year) && m.year >= 1970 && m.year <= 2019
     && categories.includes(m.category as Memory['category']) && m.source === 'local'
     && typeof m.lat === 'number' && Number.isFinite(m.lat) && Math.abs(m.lat) <= 90
     && typeof m.lng === 'number' && Number.isFinite(m.lng) && Math.abs(m.lng) <= 180;

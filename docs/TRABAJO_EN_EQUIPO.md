@@ -8,11 +8,12 @@ La aplicación separa el motor funcional de la presentación. Cada pareja es due
 | B · Ochenta | `src/eras/80s/` | `http://localhost:5173/?era=1980` |
 | C · Noventa | `src/eras/90s/` | `http://localhost:5173/?era=1990` |
 | D · Dos mil | `src/eras/2000s/` | `http://localhost:5173/?era=2000` |
+| E · Dos mil diez | `src/eras/2010s/` | `http://localhost:5173/?era=2010` |
 
 ## Qué edita cada pareja
 
 ```text
-src/eras/80s/             # Misma estructura en las cuatro carpetas
+src/eras/80s/             # Misma estructura en las cinco carpetas
   theme.ts               # Colores, fuentes, tokens, textos e iconos
   theme.css              # Estilos de mapa, feed, perfil, ventanas y reproductor
   Chrome.tsx             # Marco visual propio de la época
@@ -47,7 +48,7 @@ El motor y `src/eras/shared/` requieren acuerdo entre parejas. Los componentes t
 
 ## Contratos e integración
 
-`src/eras/contracts.ts` define `EraModule`, `EraTheme`, `ChromeProps`, `PlayerViewProps` y `EraContent`. Cada `index.ts` usa `satisfies EraModule`: TypeScript detecta props faltantes y cambios incompatibles. `src/eras/registry.ts` registra las cuatro implementaciones y es el punto de integración de módulos. El selector temporal, los adaptadores y los agregadores leen ese registro.
+`src/eras/contracts.ts` define `EraModule`, `EraTheme`, `ChromeProps`, `PlayerViewProps` y `EraContent`. Cada `index.ts` usa `satisfies EraModule`: TypeScript detecta props faltantes y cambios incompatibles. `src/eras/registry.ts` registra las cinco implementaciones y es el punto de integración de módulos. El selector temporal, los adaptadores y los agregadores leen ese registro.
 
 Para editar una época existente, no se modifica el registro. Para agregar una nueva, se coordina el cambio en el registro, la unión `Decade` y el rango admitido por la validación; no agregar condicionales visuales en App ni Player.
 

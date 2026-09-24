@@ -1,0 +1,5 @@
+import { Plus, Users } from 'lucide-react';
+import type { ProfileIdentityProps } from '../contracts';
+export default function ProfileIdentity({onAdd}: ProfileIdentityProps) {
+ return <><div className="profile-live-title"><Users size={17}/><span>Nostalgia Live <strong>Messenger</strong></span></div><div className="profile-live-heading">Compartí tu mundo.<strong>Tus recuerdos siguen conectados.</strong></div><div className="profile-portrait" aria-hidden="true"><span className="messenger-silhouette"><i/><b/></span><span className="profile-online-dot"/></div><div className="personal-identity"><span className="eyebrow">MI ESPACIO PERSONAL</span><h2>Mi perfil</h2><p className="profile-screen-name">Visitante <span className="profile-availability">● Disponible</span></p><div className="profile-status-message">♫ Volviendo a esos días...</div><small>Recuerdos guardados en este navegador</small></div><button className="primary-button" onClick={onAdd}><Plus size={17}/>Compartir un recuerdo</button></>;
+}

@@ -1,0 +1,4 @@
+import { Globe2, MessageSquare, CalendarDays, Music2 } from 'lucide-react';
+import type { EraTheme } from '../contracts';
+export const theme = {brand:'nostalgia',subtitle:'Tu vida, en tu biografía.',brandLabel:'CONECTADOS DESDE 2010',shortLabel:'2010s',windowTitle:'Nostalgia · Historias que nos conectan',storiesTitle:'Publicaciones de tus amigos',factsTitle:'Esto estaba pasando',musicTitle:'Tu música · En el bolsillo',tokens:{'--bg':'#e9ebee','--surface':'#fff','--ink':'#283447','--muted':'#657287','--accent':'#3b5998','--soft':'#edf0f5','--line':'#ccd2dc','--radius':'4px','--shadow':'0 2px 4px #23334c15','--font-body':'Arial,Helvetica,sans-serif','--font-display':'Arial,Helvetica,sans-serif'}} satisfies EraTheme;
+export const icons={map:Globe2,stories:MessageSquare,facts:CalendarDays,music:Music2};

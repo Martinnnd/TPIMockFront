@@ -1,0 +1,100 @@
+/* Early-2010s social network, with an iPhone 4 music player. */
+.era-2010 .era-shell-top { background:linear-gradient(#5273ab,#3b5998); color:#fff; border-bottom:1px solid #223e75; font:11px Arial,sans-serif; }
+.era-2010 .network-home { background:transparent; border:0; color:white; font:bold 11px Arial,sans-serif; padding:3px 14px; }
+.era-2010 .network-footer { position:absolute; bottom:0; left:72px; right:0; height:30px; padding:0 20px; z-index:550; display:flex; align-items:center; justify-content:space-between; background:#f6f7f9; border-top:1px solid #ccd2dc; color:#68758c; font:10px Arial,sans-serif; }
+.era-2010 .navigation-rail { background:#f4f5f8; border-right:1px solid #c5ccd8; color:#53657c; }
+.era-2010 .rail-logo { font:bold 45px Arial,sans-serif; color:#3b5998; }
+.era-2010 .navigation-rail button { font:10px Arial,sans-serif; border-radius:3px; color:#52647e; }
+.era-2010 .navigation-rail button svg { color:#5273a7; }
+.era-2010 .navigation-rail :is(.rail-active,button[aria-expanded=true]) { background:#dce3ef; color:#2b4677; box-shadow:inset 3px 0 #3b5998; }
+.era-2010 .brand-card { background:linear-gradient(#5275af,#3b5998); border:1px solid #29477b; border-radius:3px; padding:13px 20px; color:#dce7f9; box-shadow:0 3px 12px #182c4d30; }
+.era-2010 .brand-card h1 { font:bold 37px/1 Arial,sans-serif; letter-spacing:-2px; color:white; }
+.era-2010 .brand-card h1>span { display:none; }
+.era-2010 .brand-card>span { font:9px Arial,sans-serif; color:#dce7f9; }
+.era-2010 .brand-card>span:last-child { margin-top:8px; }
+.era-2010 :is(.timeline,.map-period,.stories-drawer,.era-fact-popup,.memory-dialog,.expanded-map-dialog) { background:#fff; border:1px solid #c7cfdb; border-radius:3px; box-shadow:0 3px 12px #20365022; }
+.era-2010 :is(.drawer-heading,.fact-top,.dialog-heading,.expanded-map-dialog>header) { background:linear-gradient(#587bb2,#3b5998); color:#fff; border-bottom:1px solid #294374; }
+.era-2010 :is(.drawer-heading .eyebrow,.fact-top>span) { color:white; }
+.era-2010 .primary-button { background:linear-gradient(#698ac0,#4265a2); color:#fff; border:1px solid #2c4c83; border-radius:3px; box-shadow:inset 0 1px #94add5; font:bold 12px Arial,sans-serif; }
+.era-2010 .primary-button:hover { background:#3b5998; }
+.era-2010 .fact-art { background:linear-gradient(135deg,#426799,#8baac9); color:white; border-radius:2px; }
+.era-2010 .memory-marker { border:3px solid white; border-radius:50%; box-shadow:0 2px 5px #1c335f66; background:#5274ac; color:white; }
+.era-2010 .compact-menu summary { border-radius:3px; }
+.era-2010:is(.view-feed,.view-profile) { background:#e9ebee; }
+.era-2010 .feed-heading { padding:14px; background:#fff; border:1px solid #cdd4df; border-radius:3px; margin-bottom:12px; }
+.era-2010 .feed-heading h2 { font:bold 19px Arial,sans-serif; color:#3b5998; }
+.era-2010 .feed-tabs button,.era-2010 .follow-button { background:linear-gradient(#fff,#e9edf3); border:1px solid #bac5d5; color:#3b5998; border-radius:3px; }
+.era-2010 .feed-tabs button[aria-pressed=true],.era-2010 .follow-button[aria-pressed=true] { background:#3b5998; color:white; }
+.era-2010 .feed-post { padding:18px; margin-bottom:14px; border:1px solid #d0d5df; background:#fff; border-radius:3px; }
+.era-2010 .feed-post>header { border-bottom:1px solid #edf0f5; padding-bottom:12px; }
+.era-2010 .social-avatar { border-radius:3px; background:linear-gradient(#afc3dc,#7492ba); color:white; border:1px solid #6987b0; }
+.era-2010 .feed-post header strong { color:#3b5998; }
+.era-2010 .post-content h3 { font-size:19px; }
+.era-2010 .post-content p { font:14px/1.7 Arial,sans-serif; }
+.era-2010 .feed-post>footer { border-top:1px solid #e2e7ee; padding-top:8px; }
+.era-2010 .feed-sidebar>section { border:1px solid #d0d5df; padding:18px; box-shadow:none; }
+.era-2010 .feed-sidebar h3 { font:bold 15px Arial,sans-serif; color:#4b5b74; }
+.era-2010 .personal-header { position:relative; background:white; border:1px solid #cad1dc; border-top:0; border-radius:3px; padding:0 25px 20px; grid-template-columns:135px 1fr auto; gap:20px; box-shadow:0 2px 5px #1d345210; }
+.era-2010 .profile-network-cover { position:relative; grid-column:1/-1; height:205px; margin:0 -25px; padding:40px 35px; color:white; background:linear-gradient(120deg,#193d61aa,#34679633),radial-gradient(ellipse at 15% 125%,#2c555a 0 34%,transparent 35%),radial-gradient(ellipse at 80% 145%,#567c83 0 55%,transparent 56%),linear-gradient(#789ebb,#d5ddcf); }
+.era-2010 .profile-network-cover>span { display:block; font:normal 32px Georgia,serif; }
+.era-2010 .profile-network-cover>small { display:block; margin-top:8px; color:#e3eaf1; }
+.era-2010 .profile-network-cover>svg { position:absolute; right:20px; bottom:16px; opacity:.7; }
+.era-2010 .profile-portrait { position:relative; z-index:1; margin-top:-65px; width:125px; height:125px; border-radius:3px; border:5px solid white; background:linear-gradient(#dce5f0,#8ea7c9); color:white; box-shadow:0 0 0 1px #b4bdcc; }
+.era-2010 .personal-identity h2 { font:bold 29px Arial,sans-serif; color:#34445c; }
+.era-2010 .personal-counts { padding-top:16px; border-color:#e1e6ed; }
+.era-2010 .personal-counts dd { font:bold 26px Arial,sans-serif; color:#3b5998; }
+.era-2010 .personal-counts dt { color:#65738a; }
+.era-2010 .personal-section-title { padding:13px 17px; background:white; border:1px solid #d0d6df; margin-bottom:0; }
+.era-2010 .personal-section-title h3 { font:bold 19px Arial,sans-serif; }
+.era-2010 .personal-map { border:3px solid white; border-radius:0 0 3px 3px; }
+.era-2010 .personal-memory,.era-2010 .personal-empty { background:white; border:1px solid #cdd5e0; border-radius:3px; }
+/* Glass front, stainless-steel band, iOS status bar and physical home key. */
+.app.era-2010 .device-2010 { width:220px; padding:9px; border:3px solid #9ca2a7; border-radius:29px; background:linear-gradient(115deg,#303237,#090a0d 35%,#17191d 90%,#45474d); box-shadow:inset 0 0 0 2px #050608,0 7px 19px #0006,2px 0 0 #dce0e4; color:white; }
+.era-2010 .device-2010 .device-illustration { display:block; }
+.era-2010 .phone-earpiece { position:relative; height:29px; }
+.era-2010 .phone-earpiece::before { content:''; position:absolute; left:35%; top:8px; width:30%; height:5px; border-radius:8px; background:#020304; border:1px solid #3d424a; }
+.era-2010 .phone-earpiece i { position:absolute; left:21%; top:8px; width:6px; height:6px; border-radius:50%; background:radial-gradient(#354b63,#070a12); border:1px solid #292f38; }
+.era-2010 .phone-screen { margin:0 2px; background:#dbe0e6; border:1px solid #030508; border-bottom:0; }
+.era-2010 .phone-status { display:flex; align-items:center; gap:4px; padding:3px 5px; color:#fff; font:8px Arial,sans-serif; background:linear-gradient(#333,#111); }
+.era-2010 .phone-status span:nth-of-type(2) { margin:auto; }
+.era-2010 .phone-app-title { padding:8px; text-align:center; font:bold 12px Arial,sans-serif; color:white; text-shadow:0 -1px #36516d; background:linear-gradient(#a6b9ce,#526f91); border-bottom:1px solid #3e5673; }
+.era-2010 .phone-album { height:110px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; color:#fcdbb6; background:radial-gradient(circle at 80% 15%,#d5975840,transparent 60%),linear-gradient(145deg,#233c54,#141922); }
+.era-2010 .phone-album>span { font:bold 10px Arial,sans-serif; letter-spacing:2px; }
+.era-2010 .phone-album small { font:8px Arial,sans-serif; color:#a5bac9; }
+.app.era-2010 .device-2010 .music-compact { flex-wrap:wrap; justify-content:center; gap:8px; margin:0 2px; padding:9px 8px 47px; position:relative; background:linear-gradient(#f2f4f6,#c2c8d0 calc(100% - 39px),transparent calc(100% - 39px)); }
+.era-2010 .device-2010 .music-compact::after { content:''; position:absolute; bottom:1px; left:calc(50% - 15px); width:30px; height:30px; border:1px solid #333840; border-radius:50%; background:linear-gradient(#090a0b,#282c32); box-shadow:inset 0 1px 1px #000; pointer-events:none; }
+.era-2010 .device-2010 .music-compact::before { content:''; position:absolute; bottom:10px; left:calc(50% - 5px); width:10px; height:10px; border:1px solid #7a8189; border-radius:3px; z-index:1; pointer-events:none; }
+.era-2010 .device-2010 .track-open { flex:0 0 100%; text-align:center; color:#253647; }
+.era-2010 .device-2010 .track-open .eyebrow { color:#657384; }
+.era-2010 .device-2010 .track-open strong { font:bold 12px Arial,sans-serif; }
+.era-2010 .device-2010 .track-open small { font:9px Arial,sans-serif; display:block; white-space:normal; }
+.era-2010 .device-2010 .music-buttons { gap:18px; color:#35495d; }
+.era-2010 .device-2010 .listen-button { background:linear-gradient(#fff,#a5b2c2); color:#30465b; border:1px solid #8999ad; border-radius:7px; box-shadow:inset 0 1px #fff; }
+.app.era-2010 .device-2010.expanded { width:350px; }
+.era-2010 .music-expanded { background:#f5f7fa; color:#38495b; border-radius:12px 12px 0 0; }
+.era-2010 .music-heading { background:linear-gradient(#9fb5cc,#587596); color:#fff; }
+.era-2010 .music-heading .eyebrow { color:#fff; }
+.era-2010 .music-provider-note { color:#4a5c70; }
+.app.era-2010.view-feed .device-2010 { width:220px; }
+.app.era-2010.view-feed .device-2010.expanded { width:350px; }
+@media(max-width:899px) {
+ .era-2010 .network-footer { display:none; }
+ .era-2010 .brand-card { padding:9px 12px; }
+ .era-2010 .brand-card h1 { font-size:28px; }
+ .era-2010 .brand-card>span { font-size:6px; }
+ .era-2010 .navigation-rail { border-top:1px solid #c5ccd8; }
+ .era-2010 .feed-post { padding:12px; }
+ .era-2010 .personal-header { grid-template-columns:72px 1fr; padding:0 14px 16px; gap:13px; }
+ .era-2010 .profile-network-cover { height:145px; margin:0 -14px; padding:25px 20px; }
+ .era-2010 .profile-network-cover>span { font-size:24px; }
+ .era-2010 .profile-portrait { width:67px; height:77px; margin-top:-38px; }
+ .era-2010 .personal-identity h2 { font-size:25px; }
+ .app.era-2010 .device-2010,.app.era-2010.view-feed .device-2010 { width:auto; padding:5px; border-radius:15px; }
+ .era-2010 .device-2010:not(.expanded) .device-illustration { display:none; }
+ .app.era-2010 .device-2010:not(.expanded) .music-compact { padding:8px; flex-wrap:nowrap; background:linear-gradient(#edf0f4,#b9c6d7); border-radius:7px; }
+ .era-2010 .device-2010:not(.expanded) .music-compact::before,.era-2010 .device-2010:not(.expanded) .music-compact::after { display:none; }
+ .era-2010 .device-2010:not(.expanded) .track-open { flex:1; text-align:left; min-width:0; }
+ .era-2010 .device-2010 .music-buttons { gap:5px; }
+ .app.era-2010 .device-2010.expanded,.app.era-2010.view-feed .device-2010.expanded { width:auto; }
+ .era-2010 .device-2010.expanded .device-illustration { display:block; }
+}
