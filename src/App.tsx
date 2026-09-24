@@ -32,7 +32,7 @@ export default function App() {
   const [draft, setDraft] = useState<Point | null>(null);
   const [notice, setNotice] = useState('');
   const [panelOpen, setPanelOpen] = useState(false);
-  const [factsOpen, setFactsOpen] = useState(true);
+  const [factsOpen, setFactsOpen] = useState(false);
   const [musicOpen, setMusicOpen] = useState(false);
   const addButton = useRef<HTMLButtonElement>(null);
   const storiesButton = useRef<HTMLButtonElement>(null);
@@ -56,7 +56,7 @@ export default function App() {
   const visibleMemories = view === 'profile' ? ownMemories : memories;
   const selected = visibleMemories.find(m => m.id === selectedId) ?? null;
   function changePeriod(next: Period) {
-    setPeriod(next); setSelectedId(null); setFactsOpen(view === 'map'); setPanelOpen(false);
+    setPeriod(next); setSelectedId(null); setFactsOpen(false); setPanelOpen(false);
     if (next.decade !== period.decade) setMusicOpen(false);
   }
   function select(memory: Memory) {
@@ -101,7 +101,7 @@ export default function App() {
   const ActiveMap = view === 'map' ? MainMap : MemoryMap;
   return <div style={theme.tokens} className={`app map-app view-${view} era-${period.decade} ${panelOpen ? 'stories-open' : ''} ${musicOpen ? 'music-open' : ''}`}>
     <a className="skip-link" href="#explore">Saltar al mapa</a>
-    {view !== 'profile' && <main id="explore" className="map-canvas"><ActiveMap memories={memories} selected={selected} onSelect={select} picking={picking} onPick={point => { setDraft(point); setPicking(false); }} draft={draft} onCancel={cancel}/>{view === 'feed' && <button ref={mapExpandButton} className="mini-map-expand" aria-label="Ampliar mapa" aria-haspopup="dialog" onClick={() => setMapExpanded(true)}><span>Ampliar mapa</span></button>}</main>}
+    {view !== 'profile' && <main id="explore" className="map-canvas"><ActiveMap decade={period.decade} memories={memories} selected={selected} onSelect={select} picking={picking} onPick={point => { setDraft(point); setPicking(false); }} draft={draft} onCancel={cancel}/>{view === 'feed' && <button ref={mapExpandButton} className="mini-map-expand" aria-label="Ampliar mapa" aria-haspopup="dialog" onClick={() => setMapExpanded(true)}><span>Ampliar mapa</span></button>}</main>}
     <EraChrome period={period} count={visibleMemories.length} panelOpen={panelOpen} musicOpen={musicOpen} onNavigate={navigate}/>
     <nav className="navigation-rail" aria-label="Navegación principal">
       <span className="rail-logo" aria-hidden="true">n<span>✳</span></span>

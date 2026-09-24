@@ -281,3 +281,17 @@
   border: 6px double #71613e;
 }
 
+
+/* Wood cabinet, brushed metal deck and a mounted pickup arm. */
+.app.era-1970 .device-1970 { border:3px solid #69452c; border-radius:7px; background:repeating-linear-gradient(2deg,#6b452d 0 2px,#805637 3px 5px,#735033 6px 9px); box-shadow:inset 0 1px 2px #e6ba82,0 8px 14px #241a1455; }
+.era-1970 .device-1970 .device-illustration { height:124px; margin:9px; border:2px solid #3c3027; border-radius:3px; background:repeating-linear-gradient(0deg,#bbb7a9 0 1px,#c6c2b5 1px 3px); box-shadow:inset 0 2px 5px #0008,0 1px #c8a77a; }
+.era-1970 .device-1970 .vinyl-platter { width:100px; height:100px; top:12px; left:12px; border:5px solid #77766d; background:conic-gradient(from 25deg,#ffffff18,transparent 16%,#ffffff20 30%,transparent 45%,#ffffff18 65%,transparent 80%),repeating-radial-gradient(#101011 0 1px,#393939 2px,#151515 3px); box-shadow:0 3px 7px #0009,0 0 0 2px #ddd8ca; }
+.era-1970 .device-1970 .vinyl-platter i { inset:29px; box-shadow:0 0 0 1px #b7653d; }
+.era-1970 .device-1970 .tonearm { top:32px; left:131px; height:68px; width:7px; transform:rotate(28deg); transform-origin:top; background:linear-gradient(90deg,#484b48,#fff 40%,#9a9e97 65%,#333); border-radius:4px; box-shadow:3px 4px 3px #0007; }
+.era-1970 .tonearm::after { content:''; position:absolute; bottom:-6px; left:-3px; width:13px; height:20px; background:linear-gradient(90deg,#242825,#73756c,#1c201d); border-radius:2px; }
+.era-1970 .tonearm-pivot { position:absolute; top:18px; left:122px; width:26px; height:26px; border-radius:50%; background:radial-gradient(#ddd 0 15%,#555 20% 40%,#b7b7ae 45% 65%,#555 70%); box-shadow:2px 3px 4px #0006; }
+.era-1970 .turntable-badge { position:absolute; right:9px; top:12px; font:7px Arial,sans-serif; letter-spacing:1px; color:#30352e; }
+.era-1970 .turntable-switch { position:absolute; right:15px; top:45px; width:19px; height:19px; border-radius:50%; background:conic-gradient(#333,#ddd,#333,#eee,#333); box-shadow:1px 2px 3px #0009; }
+.era-1970 .device-1970 .music-compact { background:#f1e7cc; margin:5px; border:1px solid #715336; }
+
+@media(max-width:899px) { .app.era-1970 .music-card:not(.expanded) .device-illustration { display:none; } }

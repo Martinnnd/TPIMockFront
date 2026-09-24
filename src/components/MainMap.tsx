@@ -1,7 +1,8 @@
 import { lazy, Suspense, useState, type ComponentProps } from 'react';
 import MemoryMap from './MemoryMap';
+import type { Decade } from '../types';
 const MapboxMap = lazy(() => import('./MapboxMap'));
-export type MapProps = ComponentProps<typeof MemoryMap>;
+export type MapProps = ComponentProps<typeof MemoryMap> & { decade?: Decade };
 export default function MainMap(props: MapProps) {
   const token = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN?.trim();
   const [fallback, setFallback] = useState(false);

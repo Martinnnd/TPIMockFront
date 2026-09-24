@@ -551,3 +551,19 @@
   box-shadow: 0 0 25px #eb2dc34d;
 }
 
+
+/* A chrome-trimmed, illuminated jukebox cabinet. */
+.app.era-1980 .device-1980 { border:3px solid #afa49b; border-radius:50px 50px 8px 8px; background:linear-gradient(90deg,#241c30,#443348 48%,#201929); box-shadow:inset 0 0 0 2px #332c38,inset 0 0 0 4px #c8bcbc,0 9px 20px #0009; }
+.era-1980 .device-1980 .device-illustration { height:178px; margin:9px 12px 0; border:0; background:none; box-shadow:none; }
+.era-1980 .jukebox { position:relative; height:100%; border:6px solid #ffbb6b; border-radius:80px 80px 5px 5px; background:linear-gradient(90deg,#9b293e,#2a192d 15% 85%,#9b293e); box-shadow:0 0 6px #ff3588,inset 0 0 0 3px #ffe4b4,inset 0 0 13px #f95896; padding:8px 20px; }
+.era-1980 .jukebox-arch { text-align:center; color:#ffe1ad; padding:1px 0 6px; text-shadow:0 0 5px #ff5680; }
+.era-1980 .jukebox-arch span { display:block; font:bold 17px Georgia,serif; letter-spacing:3px; }
+.era-1980 .jukebox-arch small { font:6px Arial,sans-serif; letter-spacing:2px; }
+.era-1980 .jukebox-glass { display:flex; gap:10px; align-items:center; justify-content:center; height:59px; border:3px ridge #b5b4b7; background:linear-gradient(135deg,#ffffff38,transparent 45%,#fff1),#181721; box-shadow:inset 0 2px 8px #000; }
+.era-1980 .jukebox-record { width:43px; height:43px; flex-shrink:0; border-radius:50%; background:radial-gradient(circle,#bfa98c 0 2px,#df5379 3px 9px,transparent 10px),repeating-radial-gradient(#121217 0 2px,#45414b 3px,#121217 4px); box-shadow:0 0 0 2px #68616b; }
+.era-1980 .jukebox-selections { display:grid; grid-template-columns:1fr 1fr; gap:3px; }
+.era-1980 .jukebox-selections i { font:6px monospace; color:#392e38; background:#f0dfc3; padding:3px; border-bottom:2px solid #bc6380; }
+.era-1980 .jukebox-grille { height:38px; margin-top:7px; border-radius:22px 22px 3px 3px; border:2px ridge #b5b4b7; background:repeating-linear-gradient(90deg,transparent 0 7px,#ba9c77 8px 10px),repeating-linear-gradient(0deg,#30212c 0 2px,#664a48 3px 4px); }
+.app.era-1980 .device-1980 .music-compact { border:2px ridge #a7a0a5; border-radius:4px; background:linear-gradient(#302731,#17131d); }
+
+@media(max-width:899px) { .app.era-1980 .music-card:not(.expanded) .device-illustration { display:none; } }

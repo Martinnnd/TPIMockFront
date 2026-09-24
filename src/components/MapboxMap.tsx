@@ -22,7 +22,7 @@ export default function MapboxMap(props: MapProps & { token: string; onFallback:
   const instance = useRef<mapboxgl.Map | null>(null);
   const styleReady = useRef(false);
   const latest = useRef(props); latest.current = props;
-  const [options, setOptions] = useState(initial);
+  const [options, setOptions] = useState<Options>(() => ({...initial, theme: props.decade === 1970 ? 'monochrome' : initial.theme}));
   const optionsRef = useRef(options); optionsRef.current = options;
   const [ready, setReady] = useState(false);
   const [error, setError] = useState(false);
@@ -50,6 +50,26 @@ export default function MapboxMap(props: MapProps & { token: string; onFallback:
     const observer = new ResizeObserver(() => map.resize()); observer.observe(container.current);
     return () => { clearTimeout(timeout); observer.disconnect(); canvas.removeEventListener('keydown', key); map.remove(); instance.current = null; styleReady.current = false; };
   }, [props.token]);
+  const previousDecade = useRef(props.decade);
+  const modernStyle = useRef({ theme: initial.theme, satellite: initial.satellite });
+  useEffect(() => {
+    if (previousDecade.current === props.decade) return;
+    const current = optionsRef.current;
+    let next = current;
+    if (props.decade === 1970) {
+      modernStyle.current = { theme: current.theme, satellite: current.satellite };
+      next = { ...current, theme: 'monochrome', satellite: false };
+    } else if (previousDecade.current === 1970) {
+      next = { ...current, ...modernStyle.current };
+    }
+    previousDecade.current = props.decade;
+    optionsRef.current = next;
+    setOptions(next);
+    if (next.satellite !== current.satellite) {
+      styleReady.current = false;
+      instance.current?.setStyle(`mapbox://styles/mapbox/${next.satellite ? 'standard-satellite' : 'standard'}`);
+    }
+  }, [props.decade]);
   useEffect(() => {
     const map = instance.current; if (!map || !ready) return;
     if (styleReady.current) configure(map, options);

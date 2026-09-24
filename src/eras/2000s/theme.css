@@ -695,3 +695,11 @@
 .era-2000 .expanded-map-dialog small {
   color: #eff7ff;
 }
+
+/* Polished shell, recessed LCD and tactile click wheel. */
+.app.era-2000 .device-2000 { border:2px solid #bbc2c8; background:linear-gradient(108deg,#fff 0%,#f9fafb 20%,#d9dfe4 65%,#fff 94%,#acb4bc); box-shadow:inset 0 0 0 2px #fff,inset -4px -3px 5px #919ba5,3px 8px 16px #13273955; }
+.app.era-2000 .device-2000 .track-open { border:3px solid #808875; background:repeating-linear-gradient(0deg,#ffffff08 0 1px,#6075500a 1px 2px),linear-gradient(125deg,#bdcbaa,#e6ecd5); box-shadow:inset 0 2px 5px #3f4c3e77,0 1px 1px #fff; }
+.app.era-2000 .device-2000 .music-buttons { background:linear-gradient(135deg,#fff,#e5e7e9); box-shadow:inset 0 1px 2px #fff,0 0 0 2px #c2c9cf,0 2px 4px #7b879777; }
+.app.era-2000 .device-2000 .music-buttons::after { content:'▶ Ⅱ'; position:absolute; bottom:9px; left:43%; font:9px Arial,sans-serif; color:#738294; pointer-events:none; }
+.app.era-2000 .device-2000 .listen-button { box-shadow:inset 0 1px 2px white,0 1px 2px #7b879755; }
+@media(max-width:899px) { .app.era-2000 .device-2000 .music-buttons::after { display:none; } }

@@ -61,6 +61,8 @@ test('mapa a pantalla completa, filtros, historias y creación persistente', asy
 
 test('datos culturales verificables, navegación y filtrado por año', async ({ page }) => {
   await page.goto('/');
+  await expect(page.locator('.era-fact-popup')).toHaveCount(0);
+  await page.getByRole('button', { name: 'La época', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Los juguetes cobraron vida' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'The Walt Disney Company' })).toHaveAttribute('href', /thewaltdisneycompany.com/);
   await page.getByRole('button', { name: 'Siguiente dato' }).click();
@@ -71,11 +73,17 @@ test('datos culturales verificables, navegación y filtrado por año', async ({ 
   await expect(page.locator('.era-fact-popup')).toBeVisible();
   await page.locator('.decade-menu summary').click();
   await page.getByRole('button', { name: 'Década de 2000' }).click();
+  await expect(page.locator('.era-fact-popup')).toHaveCount(0);
+  await page.getByRole('button', { name: 'La época', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Un ogro se robó la película' })).toBeVisible();
   await page.getByRole('combobox', { name: 'Año del recuerdo' }).selectOption('2004');
+  await expect(page.locator('.era-fact-popup')).toHaveCount(0);
+  await page.getByRole('button', { name: 'La época', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Una generación bañada en oro' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Siguiente dato' })).toBeDisabled();
   await page.getByRole('combobox', { name: 'Año del recuerdo' }).selectOption('2003');
+  await expect(page.locator('.era-fact-popup')).toHaveCount(0);
+  await page.getByRole('button', { name: 'La época', exact: true }).click();
   await expect(page.getByText('No tenemos datos verificados de 2003', { exact: false })).toBeVisible();
 });
 
@@ -213,7 +221,7 @@ test('selectores compactos: opciones ocultas, cierre y dispositivos por epoca', 
   await page.locator('.filters summary').click();
   await page.keyboard.press('Escape');
   await expect(page.locator('.category-options')).toBeHidden();
-  for (const [index, selector] of ['.vinyl-platter', '.radio-speaker', '.device-2000 .music-buttons'].entries()) {
+  for (const [index, selector] of ['.jukebox', '.radio-speaker', '.device-2000 .music-buttons'].entries()) {
     await page.locator('.decade-menu summary').click();
     await page.locator('.decades button').nth(index + 1).click();
     await expect(page.locator('.decades')).toBeHidden();
@@ -230,6 +238,8 @@ test('1970: revista, datos, musica y recuerdo persistente', async ({ page }) => 
   await expect(page.locator('.system-taskbar')).toHaveCount(0);
   await expect(page.locator('.press-footer')).toBeVisible();
   await expect(page.locator('.music-card')).toContainText('ABBA');
+  await expect(page.locator('.era-fact-popup')).toHaveCount(0);
+  await page.getByRole('button', { name: 'La época', exact: true }).click();
   await expect(page.locator('.fact-body')).toContainText('Star Wars');
   await page.locator('.add-button').click();
   await page.locator('.memory-map').click({ position: { x: 500, y: 390 } });
