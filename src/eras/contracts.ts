@@ -20,9 +20,10 @@ export interface EraFact {
 }
 export interface PlayerViewProps {
   decade: Decade; expanded: boolean; track: MusicTrack; failed: boolean;
+  tracks: MusicTrack[]; onSelect: (index: number) => void;
   onToggle: () => void; onPrevious: () => void; onNext: () => void; onError: () => void;
 }
-export interface PlayerFrameProps extends PlayerViewProps { title: string; label: string; children: ReactNode }
+export interface PlayerFrameProps extends PlayerViewProps { title: string; label: string; pickerTitle: string; children: ReactNode }
 export interface EraContent {
   memories: Memory[]; facts: EraFact[]; music: [MusicTrack, ...MusicTrack[]];
   introduction: { label: string; description: string };

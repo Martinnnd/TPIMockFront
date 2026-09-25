@@ -13,7 +13,8 @@ export function verifyEra(decade: Decade, era: EraModule) {
       expect(Object.keys(era.icons).sort()).toEqual(['facts','map','music','stories']);
     });
     it('mantiene los años y los identificadores de su contenido', () => {
-      expect(era.content.music.length).toBeGreaterThan(0);
+      expect(era.content.music).toHaveLength(5);
+      expect(new Set(era.content.music.map(track => track.spotifyId)).size).toBe(5);
       const records = [...era.content.memories, ...era.content.facts, ...era.content.music];
       for (const entry of records) { expect(entry.year).toBeGreaterThanOrEqual(decade); expect(entry.year).toBeLessThan(decade + 10); }
       const ids = [...era.content.memories, ...era.content.facts].map(entry => entry.id);

@@ -7,5 +7,5 @@ export default function Player({ decade, expanded, onToggle }: { decade: Decade;
   const { content, Player: View } = eraRegistry[decade];
   const tracks = content.music;
   function change(direction: number) { setIndex(i => (i + direction + tracks.length) % tracks.length); setFailed(false); }
-  return <View decade={decade} expanded={expanded} track={tracks[index % tracks.length]} failed={failed} onToggle={onToggle} onPrevious={() => change(-1)} onNext={() => change(1)} onError={() => setFailed(true)}/>;
+  return <View decade={decade} expanded={expanded} tracks={tracks} onSelect={i => { setIndex(i); setFailed(false); }} track={tracks[index % tracks.length]} failed={failed} onToggle={onToggle} onPrevious={() => change(-1)} onNext={() => change(1)} onError={() => setFailed(true)}/>;
 }

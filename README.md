@@ -159,3 +159,11 @@ La música muestra título y artista y abre Spotify bajo demanda. La duración d
 Cada época incluye una foto ilustrativa, un video de muestra y canciones en algunos relatos precargados. Los medios ilustrativos están en `public/demo` y sus procedencias en su README; no son registros históricos de esos lugares. Los 2010 incluyen además un video oficial de YouTube.
 
 Para adjuntar YouTube, pegar un enlace de video, youtu.be, Shorts o transmisión en el campo «Video de YouTube». Se guarda únicamente el identificador y se inserta el reproductor al tocar «Abrir video de YouTube». Elegir un archivo o un enlace, no ambos. Si el autor restringe la inserción, está disponible «Ver en YouTube». La prueba automatizada verifica la integración con un reproductor simulado, no la disponibilidad del proveedor.
+
+### Colecciones de música por época
+
+Cada `src/eras/<época>/content.ts` define cinco canciones en `music`. Se conservan las dos canciones anteriores y se agregan tres; los años indican la publicación original del tema o álbum, aunque Spotify ofrezca una remasterización o recopilación posterior. Cada entrada contiene título, artista, año, `spotifyId` y enlace de referencia.
+
+El botón **Elegir canción** abre la colección junto al equipo (en celular, dentro de la pantalla): vinilos en los 70, fichas de rockola en los 80, cassettes en los 90, lista del iPod en los 2000 y biblioteca del iPhone en los 2010. La selección actualiza también Spotify cuando el reproductor está abierto; no inicia audio automáticamente. Las flechas recorren los cinco temas circularmente. El menú se cierra al elegir, con Escape, con la cruz o al tocar afuera.
+
+`src/eras/shared/SongPicker.tsx` comparte la interacción accesible; cada equipo mantiene su apariencia en el `theme.css` de su época y su encabezado en `Player.tsx`. El catálogo también queda disponible al agregar música a un recuerdo. Verificación: `npm run check`, `npm test`, `npm run build` y `npx playwright test tests/song-library.spec.ts --workers=1`.

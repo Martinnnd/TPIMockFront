@@ -610,3 +610,12 @@
 .era-1980 .personal-map { border:3px solid #7f48a0; box-shadow:0 0 0 2px #120e27,0 0 16px #ee38db22; }
 .era-1980 .personal-empty { background:linear-gradient(130deg,#241336,#131127); border:1px solid #80489c; }
 @media(max-width:899px) { .era-1980 .personal-header { grid-template-columns:85px 1fr; padding:15px; gap:13px; } .era-1980 .profile-portrait { width:80px; height:123px; } .era-1980 .profile-portrait svg { width:46px; height:65px; } .era-1980 .profile-portrait span { font-size:11px; letter-spacing:0; } .era-1980 .profile-game-banner { font-size:20px; letter-spacing:1px; } .era-1980 .profile-game-banner span:last-child { font-size:10px; } .era-1980 .personal-identity h2 { font-size:23px; } .era-1980 .character-picker { gap:4px; margin:8px 0; } .era-1980 .character-picker button { font-size:12px; padding:4px; } .era-1980 .personal-counts { gap:4px; } .era-1980 .personal-counts dt { font-size:11px; letter-spacing:0; } }
+
+.era-1980 .song-picker { border:4px solid #ffd086; border-radius:28px 28px 8px 8px; background:linear-gradient(110deg,#43142e,#1a1621 65%); color:#ffe6b4; box-shadow:0 0 0 3px #c63b7b,0 0 22px #ff4196,0 14px 40px #0009; }
+.era-1980 .song-picker-heading { text-align:center; color:#ffe6a9; text-shadow:2px 2px #bf276e; }
+.era-1980 .song-picker-heading h2 { font-family:var(--font-display); text-transform:uppercase; font-size:19px; }
+.era-1980 .song-choice { background:repeating-linear-gradient(#f8ebcf 0 23px,#d7c6a4 24px,#f8ebcf 25px); color:#302027; border:3px ridge #9d8b70; min-height:68px; box-shadow:0 3px 0 #000; }
+.era-1980 .song-choice[aria-pressed=true] { outline:2px solid #ff49c0; box-shadow:0 0 14px #ff49c0; }
+.era-1980 .song-object { width:35px; height:42px; background:linear-gradient(#fdf4dc,#c8ac72); border:2px ridge #756451; border-radius:3px; box-shadow:2px 2px 0 #6f604e; }
+.era-1980 .song-object b { font:bold 20px Georgia,serif; color:#9c2249; }
+.era-1980 .song-label { font-family:Georgia,serif; }

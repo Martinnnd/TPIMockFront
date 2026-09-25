@@ -156,6 +156,27 @@ export const content = {
       "year": 2011,
       "spotifyId": "2GblQ918RbkOs4Yo1Rpkcj",
       "reference": "https://open.spotify.com/track/2GblQ918RbkOs4Yo1Rpkcj"
+    },
+    {
+      "title": "Uptown Funk",
+      "artist": "Mark Ronson · Bruno Mars",
+      "year": 2014,
+      "spotifyId": "32OlwWuMpZ6b0aN2RZOeMS",
+      "reference": "https://open.spotify.com/track/32OlwWuMpZ6b0aN2RZOeMS"
+    },
+    {
+      "title": "Somebody That I Used to Know",
+      "artist": "Gotye · Kimbra",
+      "year": 2011,
+      "spotifyId": "5jiXstb7P5Dq1gTqKVQJiY",
+      "reference": "https://open.spotify.com/track/5jiXstb7P5Dq1gTqKVQJiY"
+    },
+    {
+      "title": "Wake Me Up",
+      "artist": "Avicii",
+      "year": 2013,
+      "spotifyId": "0UgLHf4WheJhiTIgixmZ01",
+      "reference": "https://open.spotify.com/track/0UgLHf4WheJhiTIgixmZ01"
     }
   ]
 } satisfies EraContent;

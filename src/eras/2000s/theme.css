@@ -767,3 +767,13 @@
 .era-2000 .personal-map { border:3px solid #d7eaf5; border-radius:0 0 8px 8px; box-shadow:0 3px 12px #2d659244; }
 .era-2000 .personal-empty { background:linear-gradient(#fff,#eaf7ff); border:1px solid #b4d5e7; border-radius:0 0 8px 8px; }
 @media(max-width:899px) { .era-2000 .personal-header { grid-template-columns:80px 1fr; padding:16px; gap:14px; } .era-2000 .profile-live-title { font-size:12px; } .era-2000 .profile-live-heading { font-size:19px; } .era-2000 .profile-live-heading strong { font-size:24px; } .era-2000 .profile-portrait { width:76px; height:91px; padding:8px; border-radius:10px; } .era-2000 .messenger-silhouette { width:56px; height:68px; } .era-2000 .messenger-silhouette i { width:23px; height:24px; left:15px; top:7px; } .era-2000 .messenger-silhouette b { width:39px; height:35px; top:30px; left:7px; } .era-2000 .personal-identity h2 { font-size:24px; } .era-2000 .profile-screen-name { font-size:13px; } .era-2000 .profile-availability { display:block; margin:5px 0; font-size:10px; } .era-2000 .profile-status-message { padding:7px; font-size:10px; } .era-2000 .profile-live-heading { letter-spacing:0; } }
+
+.era-2000 .song-picker { background:linear-gradient(115deg,#fff,#ccd3d9); color:#17212b; border:5px ridge #dde1e4; border-radius:18px; padding:10px; font-family:Arial,sans-serif; }
+.era-2000 .song-picker-heading { background:linear-gradient(#fff,#b7c3cd); border:1px solid #8b969f; padding:10px; border-radius:5px 5px 0 0; }
+.era-2000 .song-picker-heading h2 { font:bold 17px Arial,sans-serif; }
+.era-2000 .song-collection { gap:0; padding:0; background:#f8faf8; border:1px solid #8b969f; border-top:0; }
+.era-2000 .song-choice { border:0; border-bottom:1px solid #d4d9dd; min-height:61px; padding:9px; }
+.era-2000 .song-choice[aria-pressed=true] { background:linear-gradient(#65b8f3,#1866b9); color:white; }
+.era-2000 .song-object { display:none; }
+.era-2000 .song-label em { display:none; }
+.era-2000 .song-picker footer { color:#68747f; padding:16px 4px 5px; }

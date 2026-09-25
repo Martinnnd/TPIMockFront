@@ -154,6 +154,27 @@ export const content = {
       "year": 2002,
       "spotifyId": "0BCPKOYdS2jbQ8iyB56Zns",
       "reference": "https://open.spotify.com/track/0BCPKOYdS2jbQ8iyB56Zns"
+    },
+    {
+      "title": "Mr. Brightside",
+      "artist": "The Killers",
+      "year": 2004,
+      "spotifyId": "003vvx7Niy0yvhvHt4a68B",
+      "reference": "https://open.spotify.com/track/003vvx7Niy0yvhvHt4a68B"
+    },
+    {
+      "title": "Hips Don't Lie",
+      "artist": "Shakira · Wyclef Jean",
+      "year": 2006,
+      "spotifyId": "3ZFTkvIE7kyPt6Nu3PEa7V",
+      "reference": "https://open.spotify.com/track/3ZFTkvIE7kyPt6Nu3PEa7V"
+    },
+    {
+      "title": "Viva La Vida",
+      "artist": "Coldplay",
+      "year": 2008,
+      "spotifyId": "1mea3bSkSGXuIRvnydlB5b",
+      "reference": "https://open.spotify.com/track/1mea3bSkSGXuIRvnydlB5b"
     }
   ]
 } satisfies EraContent;

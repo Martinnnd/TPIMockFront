@@ -98,3 +98,15 @@
  .app.era-2010 .device-2010.expanded,.app.era-2010.view-feed .device-2010.expanded { width:auto; }
  .era-2010 .device-2010.expanded .device-illustration { display:block; }
 }
+
+.era-2010 .song-picker { background:#ededed; color:#20242a; border:6px solid #222; border-radius:18px; font-family:Arial,sans-serif; }
+.era-2010 .song-picker-heading { background:linear-gradient(#b4c1d2,#617897); color:white; text-shadow:0 -1px #344158; }
+.era-2010 .song-picker-heading h2 { font:bold 18px Arial,sans-serif; }
+.era-2010 .song-collection { padding:0; gap:0; }
+.era-2010 .song-choice { border:0; border-bottom:1px solid #bfc4ca; background:linear-gradient(#fff,#eff1f3); }
+.era-2010 .song-choice[aria-pressed=true] { background:linear-gradient(#559bea,#1760c4); color:white; }
+.era-2010 .song-object { background:linear-gradient(135deg,#de987d,#60365f); color:white; border:1px solid #0004; box-shadow:0 1px 2px #0004; }
+.era-2010 .song-choice:nth-child(even) .song-object { background:linear-gradient(135deg,#74b9b2,#28577d); }
+.era-2010 .song-object::before { content:'♫'; font-size:26px; }
+.era-2010 .song-object b { display:none; }
+.era-2010 .song-picker footer { background:linear-gradient(#53565a,#222); color:#eee; }

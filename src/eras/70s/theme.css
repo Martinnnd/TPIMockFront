@@ -100,3 +100,12 @@
 .era-1970 .personal-memory { border:1px solid #95866a; border-radius:0; background:#e9e0c7; box-shadow:3px 3px #d1c5a9; }
 .era-1970 .personal-empty { background:transparent; border:3px double #9d8f72; }
 @media(max-width:899px) { .era-1970 .personal-profile { padding:13px; } .era-1970 .personal-header { grid-template-columns:65px 1fr; gap:12px; } .era-1970 .profile-portrait { width:60px; height:85px; } .era-1970 .profile-portrait span { font-size:6px; letter-spacing:1px; } .era-1970 .profile-edition { font-size:7px; } .era-1970 .profile-edition span:last-child { display:none; } .era-1970 .personal-identity h2 { font-size:26px; } .era-1970 .profile-masthead small { font-size:7px; letter-spacing:1px; } .era-1970 .personal-identity p { font-size:12px; } }
+
+.era-1970 .song-picker { background:repeating-linear-gradient(2deg,#533722 0 3px,#60422b 4px 7px); border:7px ridge #a4845b; color:#f5e6c7; }
+.era-1970 .song-picker-heading { background:#201c16; color:#eee2bd; font-family:Georgia,serif; }
+.era-1970 .song-choice { background:linear-gradient(125deg,#eee2c4,#c4b38b); color:#30291e; border:1px solid #897653; box-shadow:0 5px 0 #2b1c12,0 8px 8px #0008; padding:10px; }
+.era-1970 .song-choice[aria-pressed=true] { background:#fff2cb; outline:2px solid #e5bd74; }
+.era-1970 .song-object { width:62px; height:62px; border:4px solid #e9d8b5; background:repeating-radial-gradient(circle,#141414 0 2px,#363636 3px,#141414 4px); border-radius:2px; box-shadow:2px 2px 3px #0006; }
+.era-1970 .song-object i { position:absolute; width:23px; height:23px; background:#ac4b2b; border-radius:50%; border:1px solid #d9a46c; }
+.era-1970 .song-object b { color:#f7dfab; font:9px Georgia,serif; }
+.era-1970 .song-choice:nth-child(even) .song-object i { background:#43645a; }
