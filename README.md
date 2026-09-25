@@ -152,3 +152,10 @@ Abrir `http://localhost:5173/?era=2010`. Estética de biografía social, perfil 
 El formulario permite una imagen JPG/PNG/WebP/GIF de hasta 10 MB o un video MP4/WebM de hasta 50 MB, más una canción opcional del catálogo de las cinco épocas. Se muestran en el feed, la historia del mapa y el detalle del perfil. Los archivos se guardan en IndexedDB (`nostalgia-media`); localStorage conserva sus referencias y la canción. Las publicaciones anteriores siguen funcionando. Borrar los datos del navegador también borra los adjuntos.
 
 La música muestra título y artista y abre Spotify bajo demanda. La duración disponible depende del proveedor y de la sesión del oyente. No hay reproducción automática ni distribución entre dispositivos en este prototipo. Al ocultar una publicación se detiene su reproducción; al iniciar otro medio se pausa el anterior.
+
+
+### Ejemplos multimedia y YouTube
+
+Cada época incluye una foto ilustrativa, un video de muestra y canciones en algunos relatos precargados. Los medios ilustrativos están en `public/demo` y sus procedencias en su README; no son registros históricos de esos lugares. Los 2010 incluyen además un video oficial de YouTube.
+
+Para adjuntar YouTube, pegar un enlace de video, youtu.be, Shorts o transmisión en el campo «Video de YouTube». Se guarda únicamente el identificador y se inserta el reproductor al tocar «Abrir video de YouTube». Elegir un archivo o un enlace, no ambos. Si el autor restringe la inserción, está disponible «Ver en YouTube». La prueba automatizada verifica la integración con un reproductor simulado, no la disponibilidad del proveedor.

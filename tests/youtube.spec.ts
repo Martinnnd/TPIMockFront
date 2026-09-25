@@ -1,0 +1,27 @@
+﻿import {test,expect} from '@playwright/test';
+test('ejemplos y publicacion YouTube persistente',async({page})=>{
+ await page.route('https://www.youtube-nocookie.com/embed/**',r=>r.fulfill({contentType:'text/html',body:'<p>Reproductor YouTube de prueba</p>'}));
+ await page.goto('/?era=2010');
+ await page.getByRole('button',{name:'Feed',exact:true}).click();
+ await expect.poll(()=>page.locator('.feed-post .post-media img').first().evaluate(i=>(i as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+ await expect(page.locator('.feed-post video')).toHaveCount(1);
+ await expect(page.locator('.feed-post .post-music')).toHaveCount(2);
+ await page.locator('.youtube-preview').click();
+ await expect(page.locator('.post-youtube iframe')).toHaveAttribute('src',/youtube-nocookie.com\/embed\/5NV6Rdv1a3I/);
+ await page.getByRole('button',{name:'Perfil',exact:true}).click();
+ await expect(page.locator('.post-youtube iframe')).toHaveCount(0);
+ await page.locator('.personal-header>.primary-button').click();
+ await page.locator('.memory-map').click({position:{x:600,y:420}});
+ await page.locator('input[name=title]').fill('Mi video de YouTube');
+ await page.locator('input[name=place]').fill('UNLaM, San Justo');
+ await page.locator('textarea[name=description]').fill('Un video para acompañar este recuerdo de la universidad.');
+ await page.getByLabel('Video de YouTube',{exact:true}).fill('https://example.com/watch?v=5NV6Rdv1a3I');
+ await page.getByRole('button',{name:'Guardar recuerdo',exact:true}).click();
+ await expect(page.locator('.form-error')).toContainText('válido');
+ await page.getByLabel('Video de YouTube',{exact:true}).fill('https://youtu.be/5NV6Rdv1a3I?si=test');
+ await page.getByRole('button',{name:'Guardar recuerdo',exact:true}).click();
+ await expect(page.locator('.personal-detail .youtube-preview')).toBeVisible();
+ await page.reload();await page.getByRole('button',{name:'Perfil',exact:true}).click();
+ await page.locator('.personal-memory').first().click();
+ await expect(page.locator('.personal-detail .post-youtube a')).toHaveAttribute('href','https://www.youtube.com/watch?v=5NV6Rdv1a3I');
+});
