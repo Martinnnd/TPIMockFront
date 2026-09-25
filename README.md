@@ -145,3 +145,10 @@ Referencia: https://docs.mapbox.com/mapbox-gl-js/guides/globe/
 ### Nueva década: 2010–2019
 
 Abrir `http://localhost:5173/?era=2010`. Estética de biografía social, perfil con portada e iPhone 4 como reproductor. Incluye siete relatos ficticios, tres datos con fuentes de Apple/NASA/Disney y dos canciones en Spotify. Formularios y almacenamiento admiten años hasta 2019. Ver [guía del equipo 2010s](src/eras/2010s/README.md).
+
+
+### Adjuntos y canciones en publicaciones
+
+El formulario permite una imagen JPG/PNG/WebP/GIF de hasta 10 MB o un video MP4/WebM de hasta 50 MB, más una canción opcional del catálogo de las cinco épocas. Se muestran en el feed, la historia del mapa y el detalle del perfil. Los archivos se guardan en IndexedDB (`nostalgia-media`); localStorage conserva sus referencias y la canción. Las publicaciones anteriores siguen funcionando. Borrar los datos del navegador también borra los adjuntos.
+
+La música muestra título y artista y abre Spotify bajo demanda. La duración disponible depende del proveedor y de la sesión del oyente. No hay reproducción automática ni distribución entre dispositivos en este prototipo. Al ocultar una publicación se detiene su reproducción; al iniciar otro medio se pausa el anterior.

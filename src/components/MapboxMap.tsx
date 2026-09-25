@@ -5,6 +5,8 @@ import { symbols } from '../types';
 import type { MapProps } from './MainMap';
 
 const overview = { center: [-60, -24] as [number, number], zoom: 1.8, pitch: 0, bearing: 0 };
+// Campus UNLaM, San Justo. Globe overview remains a separate camera preset.
+const campus = { center: [-58.56631, -34.66758] as [number, number], zoom: 15.3, pitch: 0, bearing: 0 };
 const duration = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1000;
 type Options = { light: string; theme: string; satellite: boolean; labels: boolean; poi: boolean };
 const initial: Options = { light: 'day', theme: 'default', satellite: false, labels: true, poi: true };
@@ -32,7 +34,7 @@ export default function MapboxMap(props: MapProps & { token: string; onFallback:
     if (!mapboxgl.supported()) { latest.current.onFallback(); return; }
     let map: mapboxgl.Map;
     try {
-      map = new mapboxgl.Map({ container: container.current, accessToken: props.token, style: 'mapbox://styles/mapbox/standard', projection: 'globe', ...overview, minZoom: 0.5, maxZoom: 19, attributionControl: true });
+      map = new mapboxgl.Map({ container: container.current, accessToken: props.token, style: 'mapbox://styles/mapbox/standard', projection: 'globe', ...campus, minZoom: 0.5, maxZoom: 19, attributionControl: true });
     } catch { latest.current.onFallback(); return; }
     instance.current = map;
     let loaded = false;

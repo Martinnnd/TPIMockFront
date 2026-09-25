@@ -16,7 +16,9 @@ export const content = {
       "category": "Música",
       "author": "Leo",
       "description": "Fuimos un domingo de septiembre al Parque Centenario, en Caballito. Mi hermano llevaba su walkman en una riñonera y me prestó un auricular mientras dábamos la vuelta al lago. Había grabado canciones de la radio: entre tema y tema se escuchaba al locutor. Nos sentamos en el pasto, compartimos una mandarina y anotamos en la cajita qué canciones queríamos conseguir completas. Cada vez que veo un cassette me acuerdo de esa caminata.",
-      "source": "demo"
+      "source": "demo",
+      "image": "/demo/park.jpg",
+      "mediaCaption": "Foto ilustrativa actual de naturaleza; no corresponde al lugar ni a la fecha del relato."
     },
     {
       "place": "Monumento Nacional a la Bandera, Rosario",
@@ -28,7 +30,12 @@ export const content = {
       "category": "Lugares",
       "author": "Clara",
       "description": "La seño nos llevó al Monumento a la Bandera, en Rosario, en una salida de cuarto grado. Mi mamá me había preparado dos sanguchitos envueltos en una servilleta y una naranja. Subimos los escalones en fila, buscamos el río entre las columnas y después dibujamos el monumento sentados en nuestros abrigos. En mi dibujo la torre quedó torcida. Todavía está pegado en el cuaderno de ese año.",
-      "source": "demo"
+      "source": "demo",
+      "music": {
+        "title": "Sweet Child O' Mine",
+        "artist": "Guns N' Roses",
+        "spotifyId": "5r9AgnhkPQXeKG1w5rauDq"
+      }
     },
     {
       "place": "Plaza San Martín, centro de Córdoba",
@@ -40,7 +47,9 @@ export const content = {
       "category": "Personales",
       "author": "Marina",
       "description": "Mi papá nos citó en la Plaza San Martín, frente a la Catedral, para empezar las vacaciones con una foto de los cuatro. Mi hermana y yo teníamos el mismo pulóver tejido por la abuela. Cuando levantó la cámara, una paloma pasó tan cerca que nos agachamos. Gastó otra foto, pero al revelar el rollo elegimos la primera: estábamos muertos de risa. Fue nuestra postal familiar de Córdoba.",
-      "source": "demo"
+      "source": "demo",
+      "video": "/demo/flowers.mp4",
+      "mediaCaption": "Video ilustrativo actual de flores · muestra CC0 de MDN."
     },
     {
       "place": "Lago del Parque General San Martín, Mendoza",
@@ -52,7 +61,12 @@ export const content = {
       "category": "Acontecimientos",
       "author": "Gustavo",
       "description": "Festejamos los sesenta de mi abuela al lado del lago del Parque General San Martín, en Mendoza. Mi tío llegó en bicicleta con el pan atado al portaequipaje y mi mamá llevó una torta en una caja de zapatos. Pusimos el mantel a cuadros bajo un árbol y sujetamos las esquinas con cuatro piedras. Cuando sopló las velitas, el viento apagó la mitad antes que ella. La seguimos cargando durante años.",
-      "source": "demo"
+      "source": "demo",
+      "music": {
+        "title": "Welcome to the Jungle",
+        "artist": "Guns N' Roses",
+        "spotifyId": "5NIPsWpDjJTFBoPxCUUeXp"
+      }
     },
     {
       "place": "Plaza Colón, centro de Mar del Plata",

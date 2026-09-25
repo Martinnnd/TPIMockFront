@@ -1,3 +1,4 @@
+import { PostMedia, PostMusic } from './PostAttachments';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, Heart, MapPin, MessageCircle } from 'lucide-react';
 import FeedWindowChrome from '../eras/shared/FeedWindowChrome';
@@ -26,7 +27,9 @@ export default function SocialFeed({ decade, onClose, memories, selected, onSele
       <div className="feed-posts">
         {(selected ? [selected] : posts).map(memory => <article className="feed-post" key={memory.id}>
           <header><span className="social-avatar" aria-hidden="true">{memory.author.slice(0, 1)}</span><div><strong>{memory.source === 'local' ? 'Vos' : memory.author}</strong><small>{memory.source === 'demo' ? 'Relato ficticio de demostración' : 'Recuerdo local'} · {memory.year}</small></div>{memory.source === 'demo' && <button className="follow-button" aria-pressed={following.includes(memory.author)} onClick={() => follow(memory.author)}>{following.includes(memory.author) ? 'Siguiendo' : 'Seguir'}</button>}</header>
+          <PostMusic key={memory.id} music={memory.music}/>
           <button className="post-content" onClick={() => open(memory)}><h3>{memory.title}</h3><p className={selected ? '' : 'post-excerpt'}>{memory.description}</p>{!selected && <span className="read-post">Leer recuerdo completo →</span>}</button>
+          <PostMedia memory={memory}/>
           <button className="post-place" onClick={() => onMap(memory)}><MapPin size={14}/>{memory.place} · {memory.year}</button>
           <footer><button aria-label={`Me gusta: ${memory.title}`} aria-pressed={likes.includes(memory.id)} onClick={() => setLikes(v => v.includes(memory.id) ? v.filter(id => id !== memory.id) : [...v, memory.id])}><Heart size={17} fill={likes.includes(memory.id) ? 'currentColor' : 'none'}/>{likes.includes(memory.id) ? 'Te gusta' : 'Me gusta'}</button><button onClick={() => open(memory)}><MessageCircle size={17}/>{comments[memory.id]?.length || ''} Comentar</button></footer>
           {selected && <section className="post-comments" aria-label="Comentarios"><h4>La conversación</h4>{(comments[memory.id] ?? []).map((text, i) => <p key={i}><strong>Vos</strong><br/>{text}</p>)}<form onSubmit={e => { e.preventDefault(); if (!comment.trim()) return; setComments(v => ({ ...v, [memory.id]: [...(v[memory.id] ?? []), comment.trim()] })); setComment(''); }}><label className="sr-only" htmlFor="feed-comment">Comentar el recuerdo</label><textarea id="feed-comment" value={comment} maxLength={1000} required onChange={e => setComment(e.target.value)} placeholder="Comentá este recuerdo…"/><button className="primary-button" type="submit">Comentar</button></form><small>Comentarios, me gusta y seguidos son de esta sesión de demostración.</small></section>}

@@ -16,7 +16,9 @@ export const content = {
       "category": "Lugares",
       "author": "Elena",
       "description": "Nos sentamos en un banco del Parque Centenario, en Caballito, para planear las vacaciones. Papá desplegó el mapa de rutas sobre las rodillas y mamá marcó con lápiz los pueblos donde podíamos parar. Yo sujetaba una esquina para que no se volara. Después dimos una vuelta al lago y compramos maní. Guardamos aquel mapa doblado en la guantera; años después todavía tenía la mancha redonda del termo.",
-      "source": "demo"
+      "source": "demo",
+      "image": "/demo/park.jpg",
+      "mediaCaption": "Foto ilustrativa actual de naturaleza; no corresponde al lugar ni a la fecha del relato."
     },
     {
       "place": "Monumento Nacional a la Bandera, Rosario",
@@ -28,7 +30,12 @@ export const content = {
       "category": "Música",
       "author": "Roberto",
       "description": "Me encontré con mi hermana en las escalinatas del Monumento a la Bandera, en Rosario. Venía con un disco nuevo bajo el brazo, envuelto en una bolsa de papel que no quería apoyar en el suelo. Nos quedamos mirando el Paraná mientras me contaba qué tema íbamos a escuchar primero. Volvimos caminando a casa y corrimos las sillas del comedor. Lo que más recuerdo es el cuidado con que bajó la púa.",
-      "source": "demo"
+      "source": "demo",
+      "music": {
+        "title": "Dancing Queen",
+        "artist": "ABBA",
+        "spotifyId": "01topnfXJFjW4iQMVAXAo8"
+      }
     },
     {
       "place": "Plaza San Martín, centro de Córdoba",
@@ -40,7 +47,9 @@ export const content = {
       "category": "Personales",
       "author": "Inés",
       "description": "La abuela nos esperaba en la Plaza San Martín de Córdoba con una revista doblada dentro de la cartera. Nos sentamos frente a la Catedral y nos mostró una receta que quería probar el domingo. Mi prima se quedó mirando las publicidades y yo copié los ingredientes en un papel. Al volver compramos harina y huevos. El bizcochuelo salió torcido, pero guardamos el recorte entre las páginas de su cuaderno.",
-      "source": "demo"
+      "source": "demo",
+      "video": "/demo/flowers.mp4",
+      "mediaCaption": "Video ilustrativo actual de flores · muestra CC0 de MDN."
     },
     {
       "place": "Lago del Parque General San Martín, Mendoza",
@@ -52,7 +61,12 @@ export const content = {
       "category": "Acontecimientos",
       "author": "Raúl",
       "description": "Para el aniversario de mis padres llevamos una mesa plegable al lago del Parque General San Martín, en Mendoza. Mis tíos llegaron con empanadas y mi hermana preparó un cartel pintado con témpera. Antes de almorzar nos acomodamos para una foto con la cámara de rollo. El disparador tardó tanto que papá salió corriendo a comprobarlo. En la copia aparece de espaldas y el resto de nosotros riéndose.",
-      "source": "demo"
+      "source": "demo",
+      "music": {
+        "title": "Bohemian Rhapsody",
+        "artist": "Queen",
+        "spotifyId": "1yslmgUcM2AOkOPS4sl3QV"
+      }
     },
     {
       "place": "Plaza Colón, centro de Mar del Plata",

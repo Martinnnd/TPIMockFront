@@ -1,3 +1,4 @@
+import { PostMedia, PostMusic } from './PostAttachments';
 import { useEffect, useRef } from 'react';
 import { ArrowLeft, ArrowUpRight, MapPin } from 'lucide-react';
 import { eraContent } from '../data';
@@ -14,7 +15,7 @@ export default function SidePanel({ period, selected, onBack, memories, onSelect
   return <aside ref={container} className="side-panel" aria-label="Historias y cultura" id="stories">
     {selected ? <div className="detail-content" key={selected.id}>
       <button className="text-button" onClick={onBack}><ArrowLeft size={15}/> Volver a las historias</button>
-      <MemoryArtwork category={selected.category} year={selected.year} image={selected.image} title={selected.title}/>
+      <PostMusic music={selected.music}/>{selected.media || selected.image || selected.video || selected.youtubeId ? <PostMedia memory={selected}/> : <MemoryArtwork category={selected.category} year={selected.year} title={selected.title}/>}
       <div className="detail-meta"><span className="category-badge">{symbols[selected.category]} {selected.category}</span><span>{selected.year}</span></div>
       <h2 className="detail-title">{selected.title}</h2><p className="detail-place"><MapPin size={15}/>{selected.place}</p><p className="memory-story">{selected.description}</p>
       <div className="author"><span className="avatar">{selected.author.slice(0, 1)}</span><div><strong>{selected.author}</strong><small>{selected.source === 'demo' ? 'Autor ficticio · dato de demostración' : 'Tu recuerdo · guardado en este navegador'}</small></div></div>

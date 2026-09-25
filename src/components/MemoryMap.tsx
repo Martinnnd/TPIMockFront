@@ -13,7 +13,7 @@ function MapActions({ picking, onPick, selected, reset }: { picking: boolean; on
     return () => observer.disconnect();
   }, [map]);
   useEffect(() => { if (selected) map.setView([selected.lat, selected.lng], Math.max(map.getZoom(), 6), { animate: false }); }, [selected, map]);
-  useEffect(() => { map.setView(center, 4); }, [reset, map]);
+  useEffect(() => { if (reset > 0) map.setView(center, 4); }, [reset, map]);
   useEffect(() => { map.getContainer().style.cursor = picking ? 'crosshair' : ''; }, [picking, map]);
   useEffect(() => {
     const element = map.getContainer();
@@ -33,7 +33,7 @@ function icon(memory?: Memory, selected = false) {
   const category = memory ? memory.category.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') : 'provisional';
   return L.divIcon({ className: 'memory-marker-wrapper', html: `<span class="memory-marker marker-${category} ${selected ? 'selected' : ''}">${symbol}</span>`, iconSize: [36, 42], iconAnchor: [18, 40], tooltipAnchor: [0, -38] });
 }
-export default function MemoryMap({ memories, selected, onSelect, picking, onPick, draft, onCancel }: { memories: Memory[]; selected: Memory | null; onSelect: (m: Memory) => void; picking: boolean; onPick: (p: Point) => void; draft: Point | null; onCancel: () => void }) {
+export default function MemoryMap({ memories, selected, onSelect, picking, onPick, draft, onCancel, initialCenter = center, initialZoom = 4 }: { initialCenter?: [number, number]; initialZoom?: number; memories: Memory[]; selected: Memory | null; onSelect: (m: Memory) => void; picking: boolean; onPick: (p: Point) => void; draft: Point | null; onCancel: () => void }) {
   const [reset, setReset] = useState(0);
   const [tileError, setTileError] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -41,7 +41,7 @@ export default function MemoryMap({ memories, selected, onSelect, picking, onPic
   useEffect(() => { const timeout = window.setTimeout(() => { if (!loaded) setTileError(true); }, 12000); return () => clearTimeout(timeout); }, [loaded, retry]);
   return <section className="map-section" aria-label="Mapa de recuerdos de Argentina">
     <div className="map-frame">
-      <MapContainer center={center} zoom={4} minZoom={3} maxZoom={18} scrollWheelZoom className="memory-map" attributionControl zoomControl={false}>
+      <MapContainer center={initialCenter} zoom={initialZoom} minZoom={3} maxZoom={18} scrollWheelZoom className="memory-map" attributionControl zoomControl={false}>
         <ZoomControl position="bottomright" zoomInTitle="Acercar mapa" zoomOutTitle="Alejar mapa"/>
         <TileLayer key={retry} url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' eventHandlers={{ tileerror: () => setTileError(true), load: () => setLoaded(true) }}/>
         <MapActions picking={picking} onPick={onPick} selected={selected} reset={reset}/>

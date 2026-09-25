@@ -16,7 +16,9 @@ export const content = {
       "place": "Parque Centenario, Caballito, Buenos Aires",
       "lat": -34.6065,
       "lng": -58.4355,
-      "source": "demo"
+      "source": "demo",
+      "image": "/demo/park.jpg",
+      "mediaCaption": "Foto ilustrativa actual de naturaleza; no corresponde al lugar ni a la fecha del relato."
     },
     {
       "id": "demo-2010-2",
@@ -28,7 +30,14 @@ export const content = {
       "place": "Monumento Nacional a la Bandera, Rosario",
       "lat": -32.9475,
       "lng": -60.6304,
-      "source": "demo"
+      "source": "demo",
+      "music": {
+        "title": "Get Lucky",
+        "artist": "Daft Punk · Pharrell Williams · Nile Rodgers",
+        "spotifyId": "2lAOYHa5kr9G9eYCNebqWR"
+      },
+      "youtubeId": "5NV6Rdv1a3I",
+      "mediaCaption": "Get Lucky · audio oficial de Daft Punk (2013)."
     },
     {
       "id": "demo-2010-3",
@@ -40,7 +49,9 @@ export const content = {
       "place": "Plaza San Martín, centro de Córdoba",
       "lat": -31.4167,
       "lng": -64.1835,
-      "source": "demo"
+      "source": "demo",
+      "video": "/demo/flowers.mp4",
+      "mediaCaption": "Video ilustrativo actual de flores · muestra CC0 de MDN."
     },
     {
       "id": "demo-2010-4",
@@ -52,7 +63,12 @@ export const content = {
       "place": "Lago del Parque General San Martín, Mendoza",
       "lat": -32.8951,
       "lng": -68.8794,
-      "source": "demo"
+      "source": "demo",
+      "music": {
+        "title": "Rolling in the Deep",
+        "artist": "Adele",
+        "spotifyId": "2GblQ918RbkOs4Yo1Rpkcj"
+      }
     },
     {
       "id": "demo-2010-5",

@@ -16,7 +16,9 @@ export const content = {
       "category": "Personales",
       "author": "Cami",
       "description": "Nos juntamos en el Parque Centenario después de rendir la última materia. Llevé una cámara digital plateada que usaba dos pilas y una tarjeta donde casi no quedaba espacio. Elegimos el lago de fondo y sacamos la misma foto ocho veces: siempre alguien cerraba los ojos. Esa noche subí una al Fotolog con un marco negro y un texto larguísimo. Mi mejor amiga comentó antes de que terminara de avisarle por Messenger.",
-      "source": "demo"
+      "source": "demo",
+      "image": "/demo/park.jpg",
+      "mediaCaption": "Foto ilustrativa actual de naturaleza; no corresponde al lugar ni a la fecha del relato."
     },
     {
       "place": "Monumento Nacional a la Bandera, Rosario",
@@ -28,7 +30,12 @@ export const content = {
       "category": "Música",
       "author": "Agus",
       "description": "Después de mi primera entrevista de trabajo fui con mi novia al Monumento a la Bandera. Nos sentamos en la parte baja de las escalinatas, mirando el Paraná. En mi MP3 de 128 MB entraban pocas canciones, así que las conocíamos de memoria. Compartimos los auriculares y una gaseosa tibia mientras le contaba todas las cosas que creía haber contestado mal. A la semana me llamaron. Para festejar volvimos al mismo lugar.",
-      "source": "demo"
+      "source": "demo",
+      "music": {
+        "title": "In the End",
+        "artist": "Linkin Park",
+        "spotifyId": "60a0Rd6pjrkxjPbaKzXjfq"
+      }
     },
     {
       "place": "Plaza San Martín, centro de Córdoba",
@@ -40,7 +47,9 @@ export const content = {
       "category": "Lugares",
       "author": "Flor",
       "description": "Mis amigas y yo quedamos en la Plaza San Martín de Córdoba para intercambiar las fotos de una salida del colegio. Llevé las copias impresas en un sobre de laboratorio; algunas tenían los dedos tapando el lente. Nos repartimos las mejores junto a la Catedral y prometimos escanear las otras. Esa noche la conversación siguió por Messenger: cada una se puso una foto distinta y nos mandamos zumbidos hasta que nos mandaron a dormir.",
-      "source": "demo"
+      "source": "demo",
+      "video": "/demo/flowers.mp4",
+      "mediaCaption": "Video ilustrativo actual de flores · muestra CC0 de MDN."
     },
     {
       "place": "Lago del Parque General San Martín, Mendoza",
@@ -52,7 +61,12 @@ export const content = {
       "category": "Acontecimientos",
       "author": "Juan",
       "description": "Armamos un grupo para reencontrarnos cinco años después de terminar el colegio. Elegimos el lago del Parque General San Martín, en Mendoza, porque todos sabíamos llegar. Cada uno llevó algo para el picnic; yo aparecí con el álbum de la fiesta de egresados. Nos pasamos las fotos de mano en mano y repetimos una, en el mismo orden en que estábamos en el colegio. Esta vez entramos todos en el encuadre.",
-      "source": "demo"
+      "source": "demo",
+      "music": {
+        "title": "Clocks",
+        "artist": "Coldplay",
+        "spotifyId": "0BCPKOYdS2jbQ8iyB56Zns"
+      }
     },
     {
       "place": "Plaza Colón, centro de Mar del Plata",

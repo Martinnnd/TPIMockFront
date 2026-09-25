@@ -7,6 +7,9 @@ export function isMemory(value: unknown): value is Memory {
     && typeof m.year === 'number' && Number.isInteger(m.year) && m.year >= 1970 && m.year <= 2019
     && categories.includes(m.category as Memory['category']) && m.source === 'local'
     && typeof m.lat === 'number' && Number.isFinite(m.lat) && Math.abs(m.lat) <= 90
+    && (m.youtubeId === undefined || (typeof m.youtubeId === 'string' && /^[A-Za-z0-9_-]{11}$/.test(m.youtubeId)))
+    && (m.media === undefined || validMedia(m.media))
+    && (m.music === undefined || validMusic(m.music))
     && typeof m.lng === 'number' && Number.isFinite(m.lng) && Math.abs(m.lng) <= 180;
 }
 export function loadMemories(storage: Pick<Storage, 'getItem'>): { memories: Memory[]; warning: string } {
@@ -22,4 +25,15 @@ export function loadMemories(storage: Pick<Storage, 'getItem'>): { memories: Mem
 }
 export function saveMemories(memories: Memory[], storage: Pick<Storage, 'setItem'>): boolean {
   try { storage.setItem(STORAGE_KEY, JSON.stringify(memories)); return true; } catch { return false; }
+}
+
+function validMedia(value:unknown):boolean {
+ if(!value||typeof value!=='object')return false;
+ const m=value as Record<string,unknown>;
+ return typeof m.id==='string' && /^[a-zA-Z0-9-]{1,100}$/.test(m.id) && typeof m.name==='string' && m.name.length<=255 && (m.kind==='image'?['image/jpeg','image/png','image/webp','image/gif'].includes(String(m.mime)):m.kind==='video'&&['video/mp4','video/webm'].includes(String(m.mime)));
+}
+function validMusic(value:unknown):boolean {
+ if(!value||typeof value!=='object')return false;
+ const m=value as Record<string,unknown>;
+ return typeof m.title==='string'&&m.title.length>0&&m.title.length<=200&&typeof m.artist==='string'&&m.artist.length>0&&m.artist.length<=300&&typeof m.spotifyId==='string'&&/^[A-Za-z0-9]{22}$/.test(m.spotifyId);
 }

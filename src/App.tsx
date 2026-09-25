@@ -34,6 +34,8 @@ export default function App() {
   const [panelOpen, setPanelOpen] = useState(false);
   const [factsOpen, setFactsOpen] = useState(false);
   const [musicOpen, setMusicOpen] = useState(false);
+  useEffect(()=>{const stop=(e:Event)=>{if((e as CustomEvent).detail !== 'main-player')setMusicOpen(false);};window.addEventListener('nostalgia-play',stop);return()=>window.removeEventListener('nostalgia-play',stop);},[]);
+  useEffect(()=>{if(musicOpen)window.dispatchEvent(new CustomEvent('nostalgia-play',{detail:'main-player'}));},[musicOpen]);
   const addButton = useRef<HTMLButtonElement>(null);
   const storiesButton = useRef<HTMLButtonElement>(null);
   useEffect(() => {

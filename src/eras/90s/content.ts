@@ -16,7 +16,9 @@ export const content = {
       "category": "Personales",
       "author": "Lucía",
       "description": "Nos encontrábamos los sábados a las cinco en la entrada del Parque Centenario por la avenida Díaz Vélez, cerca del museo. Yo iba desde Almagro en una bici verde; Juli llevaba el termo y Mariano siempre aparecía con galletitas rotas en la mochila. Dábamos una vuelta al lago y elegíamos el mismo pedazo de pasto para sentarnos. Una tarde nos agarró la lluvia y volvimos pedaleando, con el mate guardado en una bolsa. Todavía tengo la foto que nos sacamos empapados en el palier.",
-      "source": "demo"
+      "source": "demo",
+      "image": "/demo/park.jpg",
+      "mediaCaption": "Foto ilustrativa actual de naturaleza; no corresponde al lugar ni a la fecha del relato."
     },
     {
       "place": "Monumento Nacional a la Bandera, Rosario",
@@ -28,7 +30,12 @@ export const content = {
       "category": "Música",
       "author": "Fede",
       "description": "Con mi amigo Martín terminamos la secundaria y nos regalamos un cassette grabado por cada uno. Nos juntamos a intercambiarlos en las escalinatas del Monumento a la Bandera, mirando hacia el Paraná. El suyo empezaba con rock nacional y tenía una lista escrita con birome azul. Escuchamos un lado entero compartiendo auriculares, mientras comíamos bizcochitos. En la etiqueta del mío puso “Rosario, diciembre del 93”. Lo conservé aunque después dejé de tener dónde escucharlo.",
-      "source": "demo"
+      "source": "demo",
+      "music": {
+        "title": "Black or White",
+        "artist": "Michael Jackson",
+        "spotifyId": "6bsCZtBsAvu4u2ueA7saDo"
+      }
     },
     {
       "place": "Plaza San Martín, centro de Córdoba",
@@ -40,7 +47,9 @@ export const content = {
       "category": "Lugares",
       "author": "Sole",
       "description": "Quedamos en la Plaza San Martín de Córdoba para organizar nuestro primer viaje a las sierras sin los grandes. Nos sentamos en un banco frente a la Catedral con un mapa de papel y una libreta para sumar los gastos. Teníamos plata para el pasaje y muy poco más. Terminamos eligiendo llevar comida desde casa y repartir las bolsas. Cada vez que vuelvo a esa plaza me acuerdo de lo importante que nos sentíamos haciendo las cuentas.",
-      "source": "demo"
+      "source": "demo",
+      "video": "/demo/flowers.mp4",
+      "mediaCaption": "Video ilustrativo actual de flores · muestra CC0 de MDN."
     },
     {
       "place": "Lago del Parque General San Martín, Mendoza",
@@ -52,7 +61,12 @@ export const content = {
       "category": "Acontecimientos",
       "author": "Diego",
       "description": "Mi hermana cumplió diez y pidió festejar en el Parque General San Martín, cerca del lago. Fuimos temprano a Mendoza a buscar sombra; mi viejo llevó las sillas plegables y yo me encargué de inflar quince globos amarillos. Armamos una búsqueda del tesoro con pistas escritas a mano. El premio estaba en la conservadora, debajo de las gaseosas. En la foto final se ve a Sofi con la corona de cartulina y toda la boca pintada de merengue.",
-      "source": "demo"
+      "source": "demo",
+      "music": {
+        "title": "De música ligera",
+        "artist": "Soda Stereo",
+        "spotifyId": "5jVvwEH4nsTrDf2pU3IW2i"
+      }
     },
     {
       "place": "Plaza Colón, centro de Mar del Plata",
