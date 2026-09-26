@@ -799,3 +799,10 @@
 .era-1990 .song-choice:nth-child(even) .song-label { border-top-color:#427483; }
 .era-1990 .song-object { width:65px; height:43px; border:2px solid #7c8988; border-radius:5px; background:radial-gradient(circle at 22% 50%,#161b1c 0 4px,#d1ceb5 5px 9px,#151a1b 10px 12px,transparent 13px),radial-gradient(circle at 78% 50%,#161b1c 0 4px,#d1ceb5 5px 9px,#151a1b 10px 12px,transparent 13px),#5c6966; }
 .era-1990 .song-object b { align-self:end; font-size:8px; }
+
+.era-1990 .device-changing .radio-speaker { animation:device-pulse .18s ease 10; }
+.era-1990 .device-changing .cassette i { animation:device-spin .6s linear 3; }
+.era-1990 .device-changing .cassette { animation:device-slide .3s ease; }
+
+.era-1990 .device-playing .radio-speaker { animation:device-pulse .3s ease infinite; }
+.era-1990 .device-playing .cassette i { animation:device-spin .9s linear infinite; }

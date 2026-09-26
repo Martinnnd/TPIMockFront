@@ -777,3 +777,12 @@
 .era-2000 .song-object { display:none; }
 .era-2000 .song-label em { display:none; }
 .era-2000 .song-picker footer { color:#68747f; padding:16px 4px 5px; }
+
+.era-2000 .device-changing .music-buttons { animation:device-glow .45s ease 4; }
+.era-2000 .device-changing .track-open { animation:device-slide .35s ease; }
+.era-2000 :is(.device-changing,.device-playing) .device-visualizer { display:flex; position:absolute; right:12px; bottom:6px; gap:3px; height:16px; align-items:end; pointer-events:none; }
+.era-2000 .device-visualizer i { display:block; height:16px; width:3px; background:var(--accent); transform-origin:bottom; animation:device-bars .4s ease infinite; }
+.era-2000 .device-visualizer i:nth-child(even) { animation-delay:-.2s; height:10px; }
+.era-2000 .device-changing .music-buttons::before { content:''; position:absolute; inset:2px; border-radius:50%; border:3px solid transparent; border-top-color:#839db8; pointer-events:none; animation:device-spin .6s ease 3; }
+
+.era-2000 .device-playing .device-visualizer { display:flex; }

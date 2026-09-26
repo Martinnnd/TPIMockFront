@@ -167,3 +167,12 @@ Cada `src/eras/<época>/content.ts` define cinco canciones en `music`. Se conser
 El botón **Elegir canción** abre la colección junto al equipo (en celular, dentro de la pantalla): vinilos en los 70, fichas de rockola en los 80, cassettes en los 90, lista del iPod en los 2000 y biblioteca del iPhone en los 2010. La selección actualiza también Spotify cuando el reproductor está abierto; no inicia audio automáticamente. Las flechas recorren los cinco temas circularmente. El menú se cierra al elegir, con Escape, con la cruz o al tocar afuera.
 
 `src/eras/shared/SongPicker.tsx` comparte la interacción accesible; cada equipo mantiene su apariencia en el `theme.css` de su época y su encabezado en `Player.tsx`. El catálogo también queda disponible al agregar música a un recuerdo. Verificación: `npm run check`, `npm test`, `npm run build` y `npx playwright test tests/song-library.spec.ts --workers=1`.
+
+### Interacciones de los equipos
+
+En escritorio se puede arrastrar un tema de la colección al cuerpo del equipo; en celular se conserva la selección por toque. También funcionan las flechas. Cada cambio dispara una animación breve (1,8 segundos): giro y brazo del tocadiscos, luces de rockola, carretes y parlantes de radio, rueda y barras del iPod, transición y barras del iPhone. Son efectos de **selección**, no indicadores de reproducción ni visualizadores del audio de Spotify. Se respeta la preferencia de movimiento reducido.
+
+La rockola y la radio tienen efectos originales sintetizados con Web Audio después de una acción del usuario, sin archivos externos; se pueden apagar con «Efectos de sonido». Si el navegador no permite audio, la selección sigue funcionando. No se modificó la integración de Spotify.
+
+
+Las animaciones ahora también siguen `playback_update` de la API oficial de Spotify Embed: continúan mientras informa reproducción y se detienen al pausar, terminar, cargar o cerrar el equipo. Los efectos mecánicos siguen siendo de selección. No requiere conectar una cuenta ni cambia la duración de las muestras. Si la API no carga, se mantiene el iframe básico sin simular reproducción. Los parlantes y barras son decorativos, no un análisis del ritmo. Se conserva movimiento reducido.

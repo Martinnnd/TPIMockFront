@@ -44,3 +44,19 @@ for (const era of [1970,1980,1990,2000,2010]) {
   await expect(dialog).not.toBeVisible();
  });
 }
+
+for (const era of [1970,1980,1990]) {
+ test(`arrastrar al equipo ${era}`,async({page})=>{
+  await page.setViewportSize({width:1440,height:1000});
+  await page.goto(`/?era=${era}`);
+  await page.getByRole('button',{name:/Elegir canción/}).click();
+  const choice=page.locator('.song-choice').nth(2);
+  const title=await choice.locator('strong').innerText();
+  await choice.dragTo(page.locator('.device-illustration'));
+  await expect(page.locator('.track-open strong')).toHaveText(title);
+  await expect(page.locator('.song-picker')).not.toBeVisible();
+  await expect(page.locator('.music-card')).toHaveClass(/device-changing/);
+  await expect(page.locator('.spotify-player')).toHaveCount(0);
+  await expect(page.locator('.music-card')).not.toHaveClass(/device-changing/,{timeout:4000});
+ });
+}

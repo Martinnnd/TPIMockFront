@@ -110,3 +110,10 @@
 .era-2010 .song-object::before { content:'♫'; font-size:26px; }
 .era-2010 .song-object b { display:none; }
 .era-2010 .song-picker footer { background:linear-gradient(#53565a,#222); color:#eee; }
+
+.era-2010 .device-changing .phone-album { animation:device-slide .4s ease; }
+.era-2010 :is(.device-changing,.device-playing) .device-visualizer { display:flex; position:absolute; right:12px; bottom:6px; gap:3px; height:16px; align-items:end; pointer-events:none; }
+.era-2010 .device-visualizer i { display:block; height:16px; width:3px; background:var(--accent); transform-origin:bottom; animation:device-bars .4s ease infinite; }
+.era-2010 .device-visualizer i:nth-child(even) { animation-delay:-.2s; height:10px; }
+
+.era-2010 .device-playing .device-visualizer { display:flex; }

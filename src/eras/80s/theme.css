@@ -619,3 +619,9 @@
 .era-1980 .song-object { width:35px; height:42px; background:linear-gradient(#fdf4dc,#c8ac72); border:2px ridge #756451; border-radius:3px; box-shadow:2px 2px 0 #6f604e; }
 .era-1980 .song-object b { font:bold 20px Georgia,serif; color:#9c2249; }
 .era-1980 .song-label { font-family:Georgia,serif; }
+
+.era-1980 .device-changing .jukebox { animation:device-glow .45s ease 4; }
+.era-1980 .device-changing .jukebox-record { animation:device-spin 1.8s linear; }
+
+.era-1980 .device-playing .jukebox { animation:device-glow 1.8s ease infinite; }
+.era-1980 .device-playing .jukebox-record { animation:device-spin 1.8s linear infinite; }

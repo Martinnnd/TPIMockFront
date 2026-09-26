@@ -127,3 +127,9 @@
 .era-1970 .song-picker footer { color:#f0dfbe; background:#211a13; }
 @media(max-width:600px) { .app.era-1970 .song-picker { width:350px; } .era-1970 .song-collection { gap:14px 10px; padding:13px 10px; } .era-1970 .song-object { width:96px; height:96px; } }
 @media(prefers-reduced-motion:reduce) { .era-1970 .song-object { transition:none; } }
+
+.era-1970 .device-changing .vinyl-platter { animation:device-spin 1.8s linear; }
+.era-1970 .device-changing .tonearm { animation:device-arm 1.8s ease; }
+
+.era-1970 .device-playing .vinyl-platter { animation:device-spin 1.8s linear infinite; }
+.era-1970 .device-playing .tonearm { animation:none; transform:rotate(42deg); }
